@@ -11,7 +11,7 @@
 	<groupId>com.restaurant.management</groupId>
 	<artifactId>rms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>rms</name>
 	<description>RM</description>
 	<properties>
