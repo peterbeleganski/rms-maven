@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <h2>Вход</h2>
+      <img mat-card-sm-image src="../../assets/images/logo.png" alt="">
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Потребителско име/Имейл" formControlName="username" required>
+        <mat-error>
+          Моля въведете правилен Имейл адрес
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" placeholder="Парола" formControlName="password" required>
+        <mat-error>
+         Моля въведете парола
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary">
+        <span style="color: white">Вход</span>
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

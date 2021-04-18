@@ -1,0 +1,18 @@
+mat-card {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.edit-product-button {
+  margin-left: 10px;
+}
+
+.loading-spinner {
+  position: relative;
+  left: 50%;
+}

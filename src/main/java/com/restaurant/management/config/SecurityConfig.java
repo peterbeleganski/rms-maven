@@ -40,8 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/add-user")
                 .hasRole("ADMIN")
                 /*.antMatchers(HttpMethod.GET).permitAll()*/
+                .antMatchers("/","/public/**", "/resources/**","/resources/public/**")
+                .permitAll()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/api/register").permitAll()
+                .antMatchers("/").permitAll()
                 /*
                     RESTAURANT restrictions
                 */
@@ -92,6 +95,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.DELETE, "/api/order/**")
                 .hasAnyRole("ADMIN", "WAITER")
+                .antMatchers(HttpMethod.GET).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()

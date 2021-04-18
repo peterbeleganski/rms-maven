@@ -1,0 +1,19 @@
+<!-- HEADER -->
+  <mat-toolbar color="primary">
+    <mat-toolbar-row style="color: white">
+      <button mat-icon-button (click)="toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span style="color: white">QrMenu</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+<!-- END HEADER -->
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="sideBarOpened">
+    <app-navigation></app-navigation>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

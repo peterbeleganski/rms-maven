@@ -1,0 +1,24 @@
+#search-box {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+mat-drawer {
+  width: 300px;
+}
+
+mat-drawer-container {
+  height: 100%;
+}
+
+mat-drawer-content {
+  padding: 20px;
+}
+
+ul li {
+  list-style: none;
+}

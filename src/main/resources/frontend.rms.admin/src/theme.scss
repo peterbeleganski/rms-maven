@@ -1,0 +1,83 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$mat-my-primary: (
+  50: #14213d,
+  100: #14213d,
+  200: #14213d,
+  300: #14213d,
+  400: #14213d,
+  500: #14213d,
+  600: #14213d,
+  700: #14213d,
+  800: #14213d,
+  900: #14213d,
+  A100: #ffff8d,
+  A200: #ffff00,
+  A400: #ffea00,
+  A700: #ffd600,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+$mat-my-secondary: (
+  50: #ffb703,
+  100: #ffb703,
+  200: #ffb703,
+  300: #ffb703,
+  400: #ffb703,
+  500: #ffb703,
+  600: #ffb703,
+  700: #ffb703,
+  800: #ffb703,
+  900: #ffb703,
+  A100: #ffff8d,
+  A200: #ffff00,
+  A400: #ffea00,
+  A700: #ffd600,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $dark-primary-text,
+    700: $dark-primary-text,
+    800: $dark-primary-text,
+    900: $dark-primary-text,
+    A100: $dark-primary-text,
+    A200: $dark-primary-text,
+    A400: $dark-primary-text,
+    A700: $dark-primary-text,
+  )
+);
+
+
+$my-app-primary: mat-palette($mat-my-primary); // #14213d
+$my-app-accent:  mat-palette($mat-my-secondary); // #ffb703
+$my-app-warn:    mat-palette($mat-deep-orange);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+
+@include angular-material-theme($my-app-theme);
+
+.alternate-theme {
+  $alternate-primary: mat-palette($mat-light-blue);
+  $alternate-accent:  mat-palette($mat-yellow, 400);
+  $alternate-theme: mat-light-theme($alternate-primary, $alternate-accent);
+  @include angular-material-theme($alternate-theme);
+}

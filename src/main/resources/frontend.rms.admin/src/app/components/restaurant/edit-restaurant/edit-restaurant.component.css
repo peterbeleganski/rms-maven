@@ -1,0 +1,13 @@
+mat-card {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+mat-form-field {
+  display: block;
+}
+
+.edit-restaurant-button {
+  margin-left: 10px;
+}

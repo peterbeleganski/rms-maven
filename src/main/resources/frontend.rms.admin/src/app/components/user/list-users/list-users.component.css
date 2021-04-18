@@ -1,0 +1,14 @@
+mat-card {
+  padding: 10px;
+  margin: 10px;
+  width: 25%;
+  display: inline-block;
+}
+
+mat-card-content {
+  margin-top: 10px;
+}
+
+.mat-card-header .mat-card-title {
+  font-size: 13px;
+}

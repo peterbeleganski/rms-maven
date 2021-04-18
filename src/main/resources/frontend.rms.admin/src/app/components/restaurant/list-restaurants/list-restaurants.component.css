@@ -1,0 +1,40 @@
+#search-box {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+#restaurant-cards {
+  margin: 10px;
+}
+
+mat-card {
+  width: 28%;
+  display: inline-block;
+}
+
+mat-card-content {
+  margin-top: 10px;
+}
+
+
+mat-card-header img {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.right {
+  position: absolute;
+  right: 5px;
+  top: 2px;
+}
+
+.no-border {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.loading-spinner {
+  position: relative;
+  left: 50%;
+}

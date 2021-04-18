@@ -1,0 +1,69 @@
+<mat-nav-list *ngIf="getSecurityObject()">
+  <div class="profile-card" *ngIf="getSecurityObject() && getSecurityObject().authenticated">
+    <div class="header">
+      <h2>{{getSecurityObject().username}}</h2>
+      <h4>Роля: {{ getRepresentationTextForRoles(getSecurityObject().authorities) }}</h4>
+    </div>
+    <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="profile-icon">
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Операции</h2>
+
+  <div *ngIf="!getSecurityObject()">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/login"> <mat-icon>lock</mat-icon>Вход</a>
+  </div>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+      <a mat-list-item routerLinkActive="list-item-active" routerLink="/restaurants">
+        <mat-icon>list</mat-icon>
+        {{isAuthenticatedForRole('OWNER') ? 'Моите ресторанти' : 'Ресторанти'}}
+      </a>
+  </div>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN')">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/restaurants/create">
+      <mat-icon>restaurant</mat-icon> Добави ресторант</a>
+  </div>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/products/create">
+      <mat-icon>fastfood</mat-icon>Добави продукт</a>
+  </div>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/import">
+      <mat-icon>upload</mat-icon>Импортиране на продукти
+    </a>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <h2 matSubheader>Потребители</h2>
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/users/create">
+      <mat-icon>group_add</mat-icon>Добави потребител</a>
+  </div>
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/users/all">
+      <mat-icon>supervisor_account</mat-icon>Всички потребители</a>
+  </div>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/my-profile">
+      <mat-icon>edit</mat-icon>Редактирай профила си</a>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" (click)="logout()">
+      <mat-icon>settings</mat-icon>Настройки</a>
+  </div>
+
+  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
+    <a mat-list-item routerLinkActive="list-item-active" (click)="logout()">
+      <mat-icon>logout</mat-icon>Изход</a>
+  </div>
+</mat-nav-list>

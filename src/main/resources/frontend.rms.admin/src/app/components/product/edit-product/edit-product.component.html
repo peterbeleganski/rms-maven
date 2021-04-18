@@ -1,0 +1,83 @@
+<h2 class="text-center">Редактирай продукт</h2>
+<div class="loading-spinner" *ngIf="!fetchedProduct">
+  <div>
+    <mat-progress-spinner
+      class="example-margin"
+      [color]="color"
+      [mode]="mode"
+      [value]="value">
+    </mat-progress-spinner>
+  </div>
+</div>
+<mat-card *ngIf="product">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-md-5">
+        <img mat-card-xl-image src="data:{{product.contentType}};base64,{{product.image}}" alt="">
+      </div>
+      <div class="col-md-7">
+        <form [formGroup]="form">
+          <mat-form-field class="full-width-input">
+            <label for="title">Име на продукта</label>
+            <input matInput formControlName="title" required id="title">
+            <mat-error>
+              Моля въведете име на продукта
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <label for="price">Цена</label>
+            <input type="number" matInput formControlName="price" id="price" required>
+            <mat-error>
+              Моля въведете цена на продукта
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <label for="description">Описание</label>
+            <textarea matInput formControlName="description" required id="description"> </textarea>
+            <mat-error>
+              Моля въведете описание на продукта
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <label for="allergens">Алергени</label>
+            <input matInput formControlName="allergens" id="allergens" required>
+            <mat-error>
+              Моля въведете алергени на продукта
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <label for="tags">Тагове</label>
+            <input matInput formControlName="tags" id="tags" required>
+            <mat-error>
+              Моля въведете тагове на продукта
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <div class="row">
+              <div class="col-md-10">
+                <mat-label>Изберете категория</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option *ngFor="let category of categories" [value]="category">
+                    {{category.title}}
+                  </mat-option>
+                </mat-select>
+              </div>
+              <div class="col-md-2">
+                <button mat-icon-button color="primary" (click)="addNewCategory(restaurantId, $event)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-form-field>
+          <h3>Избери картинка</h3>
+          <button type="button" mat-raised-button (click)="fileInput.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
+          <span *ngIf="selectedImage" class="mat-active">
+        Избран файл: {{selectedImage}}
+      </span>
+          <input hidden (change)="onFileSelect($event)" #fileInput type="file" id="file">
+          <button mat-raised-button color="primary" class="edit-product-button" (click)="editProduct()"> <mat-icon>create</mat-icon> Редактирай</button>
+        </form>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

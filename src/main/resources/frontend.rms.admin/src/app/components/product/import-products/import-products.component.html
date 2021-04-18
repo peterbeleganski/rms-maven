@@ -1,0 +1,34 @@
+<mat-card>
+  <div class="text-center">Импортиране на продукти</div>
+
+  <mat-card-content>
+    <form [formGroup]="importProductsForm" #form="ngForm">
+      <mat-form-field>
+        <mat-label>Изберете ресторант</mat-label>
+        <mat-select formControlName="restaurantId">
+          <mat-option>-----</mat-option>
+          <mat-option *ngFor="let restaurant of restaurants" [value]="restaurant.id">
+            {{restaurant.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error>Липсващ ресторант</mat-error>
+      </mat-form-field>
+
+      <span>Файл: {{importFile?.name}}</span>
+
+      <div>
+        <button mat-raised-button [disabled]="restaurantId.invalid || !importFile" (click)="importProducts()">Импортиране на продукти</button>
+        <button mat-raised-button color="primary" (click)="importDialog.click()" class="text-white">
+          <mat-icon>attachment</mat-icon>
+          Изберете файл
+        </button>
+        <input #importDialog
+               formControlName="importFilename"
+               type="file"
+               accept=".csv"
+               (change)="onImportFileChosen($event)"
+               hidden/>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="form">
+      <h2>Добави ресторант</h2>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Име на ресторант" formControlName="name" required>
+        <mat-error>
+          Моля въведете име на ресторанта
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput placeholder="Локация на ресторанта" formControlName="location" required>
+        <mat-error>
+          Моля въведете локация на ресторанта
+        </mat-error>
+      </mat-form-field>
+      <h3>Избери картинка</h3>
+      <button type="button" mat-raised-button (click)="fileInput.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
+      <span *ngIf="selectedImage" class="mat-active">
+        Избран файл: {{selectedImage}}
+      </span>
+      <input hidden (change)="onFileSelect($event)" #fileInput type="file" id="file">
+      <button mat-raised-button color="primary" class="add-restaurant-button text-white" (click)="addRestaurant()"> <mat-icon>add</mat-icon> <span>Добави</span></button>
+    </form>
+  </mat-card-content>
+</mat-card>

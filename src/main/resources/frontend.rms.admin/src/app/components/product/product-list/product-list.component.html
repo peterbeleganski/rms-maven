@@ -1,0 +1,70 @@
+<br>
+<div class="text-center border-bottom">
+  <h2>Продукти от ресторант: <u>{{restaurant?.name}}</u></h2>
+</div>
+<mat-form-field>
+  <mat-label>Търсете продукт</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Търсете продукт">
+</mat-form-field>
+<div class="alert alert-danger" *ngIf="products && products.length === 0">
+  Все още няма продукти за този ресторант
+</div>
+<div class="loading-spinner" *ngIf="!products">
+  <div>
+    <mat-progress-spinner
+      class="example-margin"
+      [color]="color"
+      [mode]="mode"
+      [value]="value">
+    </mat-progress-spinner>
+  </div>
+</div>
+<table *ngIf="products" mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="column === 'edit'">
+        <button mat-icon-button (click)="goToEditProduct(restaurant.id, element.id)">
+          <mat-icon color="primary">edit</mat-icon>
+        </button>
+      </span>
+      <span *ngIf="column === 'delete'">
+        <button mat-icon-button (click)="deleteProduct(element)">
+          <mat-icon color="warn">delete</mat-icon>
+        </button>
+      </span>
+      <span *ngIf="column !== 'edit' && column !== 'delete'">
+         {{ getDisplayTitleCategory(element, column)}}
+      </span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="example-element-detail"
+               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-diagram">
+              <div class="example-element-symbol"> <img mat-card-sm-image class="image-sm" src="data:{{element.contentType}};base64,{{element.image}}" alt="Restaurant photo"></div>
+            </div>
+            <div class="example-element-description">
+              <span class="example-element-description-attribution">Описание на продукта:</span>
+              {{element.description}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
