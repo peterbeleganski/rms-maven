@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/restaurants');
    })
      .catch(err => {
+       console.log(err);
        if (err.error?.message) {
          this.toastrService.error(err.error?.message);
        } else {
