@@ -71,4 +71,13 @@ public class ProductController extends CrudController<Product> {
         int importedProductsCount = productService.importProducts(restaurantId, importFile);
         return ResponseEntity.ok(importedProductsCount);
     }
+
+    @GetMapping("/category/{categoryId}")
+    public HttpEntity<Page<Product>> getProductsByCategory(@PathVariable String categoryId,
+                                                           @RequestParam int page,
+                                                           @RequestParam int size) {
+        var productsPage = productService.findByCategory(categoryId, PageRequest.of(page, size));
+
+        return ResponseEntity.ok(productsPage);
+    }
 }
