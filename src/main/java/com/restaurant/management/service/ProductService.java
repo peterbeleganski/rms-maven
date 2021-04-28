@@ -8,6 +8,7 @@ import com.restaurant.management.exception.EntityNotFoundException;
 import com.restaurant.management.exception.ProductImportFailedException;
 import com.restaurant.management.model.Product;
 import com.restaurant.management.model.Restaurant;
+import com.restaurant.management.repository.CategoryRepository;
 import com.restaurant.management.repository.ProductRepository;
 import com.restaurant.management.repository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -43,12 +44,20 @@ public class ProductService extends DefaultCrudService<Product> {
 
     private final RestaurantRepository restaurantRepository;
 
-    public ProductService(GridFsTemplate gridFsTemplate, GridFsOperations operations, ProductRepository productRepository, MongoTemplate mongoTemplate, RestaurantRepository restaurantRepository) {
+    private final CategoryRepository categoryRepository;
+
+    public ProductService(GridFsTemplate gridFsTemplate,
+                          GridFsOperations operations,
+                          MongoTemplate mongoTemplate,
+                          ProductRepository productRepository,
+                          RestaurantRepository restaurantRepository,
+                          CategoryRepository categoryRepository) {
         this.gridFsTemplate = gridFsTemplate;
         this.operations = operations;
-        crudRepository = productRepository;
         this.mongoTemplate = mongoTemplate;
+        crudRepository = productRepository;
         this.restaurantRepository = restaurantRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     public void addImageToProduct(String productId, MultipartFile file) throws IOException {
@@ -127,5 +136,12 @@ public class ProductService extends DefaultCrudService<Product> {
             log.error("Failed to import data from file with name {}", importFile.getOriginalFilename());
             throw new ProductImportFailedException("Failed to import products");
         }
+    }
+
+    public Page<Product> findByCategory(String categoryId, PageRequest page) {
+        var category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Category with id: %s not found", categoryId)));
+
+        return ((ProductRepository) crudRepository).findByCategory(category, page);
     }
 }
