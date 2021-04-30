@@ -23,11 +23,13 @@ public class Restaurant extends BaseObject {
     @DBRef
     private List<Order> orders = new ArrayList<>();
 
-    private byte[] image;
+    private String coverImageUrl;
 
-    private String contentType;
+    private String coverImage;
 
-    private String imageId;
+    private String logoImageUrl;
+
+    private String logoImage;
 
     @DBRef
     private User owner;

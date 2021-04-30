@@ -1487,7 +1487,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (event.target.files.length > 0) {
             var file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
             this.form.get('image').setValue(file);
           }
         }
@@ -1772,7 +1772,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           if (event.target.files.length > 0) {
             this.isSelectedNewImage = true;
             var file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
             this.form.get('image').setValue(file);
           }
         }
@@ -2549,7 +2549,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           if (event.target.files.length > 0) {
             var file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
             this.form.get('image').setValue(file);
           }
         }
@@ -2810,7 +2810,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           if (event.target.files.length > 0) {
             this.isSelectedNewImage = true;
             var file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
             this.form.get('image').setValue(file);
           }
         }

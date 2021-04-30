@@ -51,8 +51,8 @@ export class RestaurantService {
        .toPromise();
    }
 
-   addImageToRestaurant(formData, restaurantId) {
-     return this.httpClient.post(`${AppSettings.API_ENDPOINT}/api/restaurant/${restaurantId}/upload-image`,
+   addImageToRestaurant(formData, restaurantId, imageType) {
+     return this.httpClient.post(`${AppSettings.API_ENDPOINT}/api/restaurant/${restaurantId}/upload-image?imageType=${imageType}`,
        formData,
        {observe: 'response'})
        .toPromise();

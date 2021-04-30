@@ -13,9 +13,9 @@ public class RestaurantResponse {
 
     private String name;
 
-    private byte[] image;
+    private String coverImageUrl;
 
-    private String contentType;
+    private String logoImageUrl;
 
     private String location;
 

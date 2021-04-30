@@ -49,7 +49,7 @@ export class EditProductComponent implements OnInit {
       allergens: [],
       tags: [],
       category: [],
-      image: ['']
+      imageUrl: ['']
     });
   }
 
@@ -66,7 +66,7 @@ export class EditProductComponent implements OnInit {
       allergens: [this.product.allergens],
       tags: [this.product.tags],
       category: [this.product.category],
-      image: ['']
+      imageUrl: ['']
     });
   }
 
@@ -75,7 +75,7 @@ export class EditProductComponent implements OnInit {
       this.isSelectedNewImage = true;
       const file = event.target.files[0];
       this.selectedImage = event.target.files[0]?.name;
-      this.form.get('image').setValue(file);
+      this.form.get('imageUrl').setValue(file);
     }
   }
 
@@ -92,7 +92,7 @@ export class EditProductComponent implements OnInit {
       .then(response => {
         if (this.isSelectedNewImage) {
           const formData = new FormData();
-          formData.append('file', this.form.get('image').value);
+          formData.append('file', this.form.get('imageUrl').value);
           this.productService.addImageToProduct(this.product.id, formData)
             .then(res => {
               this.toastrService.success('Успешно редактирахте продукта');

@@ -16,7 +16,10 @@ export class EditRestaurantComponent implements OnInit {
   fileData: File = null;
   restaurant: RestaurantListModel = {name: ''};
   isSelectedNewImage: boolean;
-  selectedImage: string;
+  isSelectedNewLogo: boolean;
+  isSelectedNewCover: boolean;
+  selectedCoverImage: string;
+  selectedLogoImage: string;
   constructor(private formBuilder: FormBuilder,
               private activeRoute: ActivatedRoute,
               private restaurantService: RestaurantService,
@@ -26,6 +29,8 @@ export class EditRestaurantComponent implements OnInit {
       name: [],
       location: [],
       image: [],
+      logoImage: [],
+      coverImage: [],
       active: []
     });
   }
@@ -36,6 +41,8 @@ export class EditRestaurantComponent implements OnInit {
       name: this.restaurant.name,
       location: this.restaurant.location,
       image: this.restaurant.image,
+      logoImage: this.restaurant.logoImageUrl,
+      coverImage: this.restaurant.coverImageUrl,
       active: this.restaurant.active ? "active" : "inactive"
     });
   }
@@ -46,27 +53,36 @@ export class EditRestaurantComponent implements OnInit {
     this.restaurant.active = this.form.get("active").value === "active";
     this.restaurantService.patchUpdateRestaurant(restaurantId, this.restaurant)
       .then(response => {
-      if (response.status === 200 && this.isSelectedNewImage) {
-        const formData = new FormData();
-        formData.append('file', this.form.get('image').value);
-        this.restaurantService.addImageToRestaurant(formData, this.restaurant.id)
-          .then(() => {
-            this.router.navigateByUrl('/restaurants');
-            this.toastrService.success('Успешно редактирахте ресторанта');
-          });
-      } else {
-        this.router.navigateByUrl('/restaurants');
-        this.toastrService.success('Успешно редактирахте ресторанта');
-      }
+        const promises = [];
+        if (this.isSelectedNewCover) {
+          const formData = new FormData();
+          formData.append('file', this.form.get('coverImage').value);
+          promises.push(this.restaurantService.addImageToRestaurant(formData, this.restaurant.id, 'coverImage'));
+        }
+        if (this.isSelectedNewLogo) {
+          const formData = new FormData();
+          formData.append('file', this.form.get('logoImage').value);
+          promises.push(this.restaurantService.addImageToRestaurant(formData, this.restaurant.id, 'logoImage'));
+        }
+
+        Promise.all(promises).then(() => {
+          this.router.navigateByUrl('/restaurants');
+          this.toastrService.success('Успешно редактирахте ресторанта');
+        });
     }).catch(err => {AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
   }
 
-  onFileSelect(event) {
+  onFileSelect(event, imageType) {
     if (event.target.files.length > 0) {
-      this.isSelectedNewImage = true;
       const file = event.target.files[0];
-      this.selectedImage = event.target.files[0]?.name;
-      this.form.get('image').setValue(file);
+      if (imageType === 'coverImage') {
+        this.selectedCoverImage = event.target.files[0]?.name;
+        this.isSelectedNewCover = true;
+      } else {
+        this.selectedLogoImage = event.target.files[0]?.name;
+        this.isSelectedNewLogo = true;
+      }
+      this.form.get(imageType).setValue(file);
     }
   }
 

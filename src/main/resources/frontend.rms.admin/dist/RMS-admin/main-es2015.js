@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"text-center\">Редактирай продукт</h2>\n<div class=\"loading-spinner\" *ngIf=\"!fetchedProduct\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n<mat-card *ngIf=\"product\">\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-5\">\n        <img mat-card-xl-image src=\"data:{{product.contentType}};base64,{{product.image}}\" alt=\"\">\n      </div>\n      <div class=\"col-md-7\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"title\">Име на продукта</label>\n            <input matInput formControlName=\"title\" required id=\"title\">\n            <mat-error>\n              Моля въведете име на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"price\">Цена</label>\n            <input type=\"number\" matInput formControlName=\"price\" id=\"price\" required>\n            <mat-error>\n              Моля въведете цена на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"description\">Описание</label>\n            <textarea matInput formControlName=\"description\" required id=\"description\"> </textarea>\n            <mat-error>\n              Моля въведете описание на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"allergens\">Алергени</label>\n            <input matInput formControlName=\"allergens\" id=\"allergens\" required>\n            <mat-error>\n              Моля въведете алергени на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"tags\">Тагове</label>\n            <input matInput formControlName=\"tags\" id=\"tags\" required>\n            <mat-error>\n              Моля въведете тагове на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <div class=\"row\">\n              <div class=\"col-md-10\">\n                <mat-label>Изберете категория</mat-label>\n                <mat-select formControlName=\"category\">\n                  <mat-option *ngFor=\"let category of categories\" [value]=\"category\">\n                    {{category.title}}\n                  </mat-option>\n                </mat-select>\n              </div>\n              <div class=\"col-md-2\">\n                <button mat-icon-button color=\"primary\" (click)=\"addNewCategory(restaurantId, $event)\">\n                  <mat-icon>add</mat-icon>\n                </button>\n              </div>\n            </div>\n          </mat-form-field>\n          <h3>Избери картинка</h3>\n          <button type=\"button\" mat-raised-button (click)=\"fileInput.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n          <span *ngIf=\"selectedImage\" class=\"mat-active\">\n        Избран файл: {{selectedImage}}\n      </span>\n          <input hidden (change)=\"onFileSelect($event)\" #fileInput type=\"file\" id=\"file\">\n          <button mat-raised-button color=\"primary\" class=\"edit-product-button\" (click)=\"editProduct()\"> <mat-icon>create</mat-icon> Редактирай</button>\n        </form>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"text-center\">Редактирай продукт</h2>\n<div class=\"loading-spinner\" *ngIf=\"!fetchedProduct\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n<mat-card *ngIf=\"product\">\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-5\">\n        <img mat-card-xl-image src=\"{{product.imageUrl}}\" alt=\"\">\n      </div>\n      <div class=\"col-md-7\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"title\">Име на продукта</label>\n            <input matInput formControlName=\"title\" required id=\"title\">\n            <mat-error>\n              Моля въведете име на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"price\">Цена</label>\n            <input type=\"number\" matInput formControlName=\"price\" id=\"price\" required>\n            <mat-error>\n              Моля въведете цена на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"description\">Описание</label>\n            <textarea matInput formControlName=\"description\" required id=\"description\"> </textarea>\n            <mat-error>\n              Моля въведете описание на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"allergens\">Алергени</label>\n            <input matInput formControlName=\"allergens\" id=\"allergens\" required>\n            <mat-error>\n              Моля въведете алергени на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <label for=\"tags\">Тагове</label>\n            <input matInput formControlName=\"tags\" id=\"tags\" required>\n            <mat-error>\n              Моля въведете тагове на продукта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <div class=\"row\">\n              <div class=\"col-md-10\">\n                <mat-label>Изберете категория</mat-label>\n                <mat-select formControlName=\"category\">\n                  <mat-option *ngFor=\"let category of categories\" [value]=\"category\">\n                    {{category.title}}\n                  </mat-option>\n                </mat-select>\n              </div>\n              <div class=\"col-md-2\">\n                <button mat-icon-button color=\"primary\" (click)=\"addNewCategory(restaurantId, $event)\">\n                  <mat-icon>add</mat-icon>\n                </button>\n              </div>\n            </div>\n          </mat-form-field>\n          <h3>Избери картинка</h3>\n          <button type=\"button\" mat-raised-button (click)=\"fileInput.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n          <span *ngIf=\"selectedImage\" class=\"mat-active\">\n        Избран файл: {{selectedImage}}\n      </span>\n          <input hidden (change)=\"onFileSelect($event)\" #fileInput type=\"file\" id=\"file\">\n          <button mat-raised-button color=\"primary\" class=\"edit-product-button\" (click)=\"editProduct()\"> <mat-icon>create</mat-icon> Редактирай</button>\n        </form>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n");
 
 /***/ }),
 
@@ -149,7 +149,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<br>\n<div class=\"text-center border-bottom\">\n  <h2>Продукти от ресторант: <u>{{restaurant?.name}}</u></h2>\n</div>\n<mat-form-field>\n  <mat-label>Търсете продукт</mat-label>\n  <input matInput (keyup)=\"applyFilter($event)\" placeholder=\"Търсете продукт\">\n</mat-form-field>\n<div class=\"alert alert-danger\" *ngIf=\"products && products.length === 0\">\n  Все още няма продукти за този ресторант\n</div>\n<div class=\"loading-spinner\" *ngIf=\"!products\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n<table *ngIf=\"products\" mat-table\n       [dataSource]=\"dataSource\" multiTemplateDataRows\n       class=\"mat-elevation-z8\">\n  <ng-container matColumnDef=\"{{column}}\" *ngFor=\"let column of columnsToDisplay\">\n    <th mat-header-cell *matHeaderCellDef> {{column}} </th>\n    <td mat-cell *matCellDef=\"let element\">\n      <span *ngIf=\"column === 'edit'\">\n        <button mat-icon-button (click)=\"goToEditProduct(restaurant.id, element.id)\">\n          <mat-icon color=\"primary\">edit</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column === 'delete'\">\n        <button mat-icon-button (click)=\"deleteProduct(element)\">\n          <mat-icon color=\"warn\">delete</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column !== 'edit' && column !== 'delete'\">\n         {{ getDisplayTitleCategory(element, column)}}\n      </span>\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"expandedDetail\">\n    <td mat-cell *matCellDef=\"let element\" [attr.colspan]=\"columnsToDisplay.length\">\n      <div class=\"row\">\n        <div class=\"col-md-10\">\n          <div class=\"example-element-detail\"\n               [@detailExpand]=\"element == expandedElement ? 'expanded' : 'collapsed'\">\n            <div class=\"example-element-diagram\">\n              <div class=\"example-element-symbol\"> <img mat-card-sm-image class=\"image-sm\" src=\"data:{{element.contentType}};base64,{{element.image}}\" alt=\"Restaurant photo\"></div>\n            </div>\n            <div class=\"example-element-description\">\n              <span class=\"example-element-description-attribution\">Описание на продукта:</span>\n              {{element.description}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsToDisplay\"></tr>\n  <tr mat-row *matRowDef=\"let element; columns: columnsToDisplay;\"\n      class=\"example-element-row\"\n      [class.example-expanded-row]=\"expandedElement === element\"\n      (click)=\"expandedElement = expandedElement === element ? null : element\">\n  </tr>\n  <tr mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"example-detail-row\"></tr>\n</table>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<br>\n<div class=\"text-center border-bottom\">\n  <h2>Продукти от ресторант: <u>{{restaurant?.name}}</u></h2>\n</div>\n<mat-form-field>\n  <mat-label>Търсете продукт</mat-label>\n  <input matInput (keyup)=\"applyFilter($event)\" placeholder=\"Търсете продукт\">\n</mat-form-field>\n<div class=\"alert alert-danger\" *ngIf=\"products && products.length === 0\">\n  Все още няма продукти за този ресторант\n</div>\n<div class=\"loading-spinner\" *ngIf=\"!products\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n<table *ngIf=\"products\" mat-table\n       [dataSource]=\"dataSource\" multiTemplateDataRows\n       class=\"mat-elevation-z8\">\n  <ng-container matColumnDef=\"{{column}}\" *ngFor=\"let column of columnsToDisplay\">\n    <th mat-header-cell *matHeaderCellDef> {{column}} </th>\n    <td mat-cell *matCellDef=\"let element\">\n      <span *ngIf=\"column === 'edit'\">\n        <button mat-icon-button (click)=\"goToEditProduct(restaurant.id, element.id)\">\n          <mat-icon color=\"primary\">edit</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column === 'delete'\">\n        <button mat-icon-button (click)=\"deleteProduct(element)\">\n          <mat-icon color=\"warn\">delete</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column !== 'edit' && column !== 'delete'\">\n         {{ getDisplayTitleCategory(element, column)}}\n      </span>\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"expandedDetail\">\n    <td mat-cell *matCellDef=\"let element\" [attr.colspan]=\"columnsToDisplay.length\">\n      <div class=\"row\">\n        <div class=\"col-md-10\">\n          <div class=\"example-element-detail\"\n               [@detailExpand]=\"element == expandedElement ? 'expanded' : 'collapsed'\">\n            <div class=\"example-element-diagram\">\n              <div class=\"example-element-symbol\"> <img mat-card-sm-image class=\"image-sm\" src=\"{{element.imageUrl}}\" alt=\"Restaurant photo\"></div>\n            </div>\n            <div class=\"example-element-description\">\n              <span class=\"example-element-description-attribution\">Описание на продукта:</span>\n              {{element.description}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsToDisplay\"></tr>\n  <tr mat-row *matRowDef=\"let element; columns: columnsToDisplay;\"\n      class=\"example-element-row\"\n      [class.example-expanded-row]=\"expandedElement === element\"\n      (click)=\"expandedElement = expandedElement === element ? null : element\">\n  </tr>\n  <tr mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"example-detail-row\"></tr>\n</table>\n");
 
 /***/ }),
 
@@ -162,7 +162,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<mat-card>\n  <mat-card-content>\n    <form [formGroup]=\"form\">\n      <h2>Добави ресторант</h2>\n      <mat-form-field class=\"full-width-input\">\n        <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n        <mat-error>\n          Моля въведете име на ресторанта\n        </mat-error>\n      </mat-form-field>\n      <mat-form-field class=\"full-width-input\">\n        <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n        <mat-error>\n          Моля въведете локация на ресторанта\n        </mat-error>\n      </mat-form-field>\n      <h3>Избери картинка</h3>\n      <button type=\"button\" mat-raised-button (click)=\"fileInput.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n      <span *ngIf=\"selectedImage\" class=\"mat-active\">\n        Избран файл: {{selectedImage}}\n      </span>\n      <input hidden (change)=\"onFileSelect($event)\" #fileInput type=\"file\" id=\"file\">\n      <button mat-raised-button color=\"primary\" class=\"add-restaurant-button text-white\" (click)=\"addRestaurant()\"> <mat-icon>add</mat-icon> <span>Добави</span></button>\n    </form>\n  </mat-card-content>\n</mat-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<mat-card>\n  <mat-card-content>\n    <form [formGroup]=\"form\">\n      <h2>Добави ресторант</h2>\n      <mat-form-field class=\"full-width-input\">\n        <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n        <mat-error>\n          Моля въведете име на ресторанта\n        </mat-error>\n      </mat-form-field>\n      <mat-form-field class=\"full-width-input\">\n        <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n        <mat-error>\n          Моля въведете локация на ресторанта\n        </mat-error>\n      </mat-form-field>\n      <h3>Избери картинка за корицата</h3>\n      <button type=\"button\" mat-raised-button (click)=\"fileInputCover.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n      <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n        Избран файл: {{selectedCoverImage}}\n      </span>\n      <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCover type=\"file\" id=\"file\">\n      <h3>Избери лого на ресторанта</h3>\n      <button type=\"button\" mat-raised-button (click)=\"fileInputLogo.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n      <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n        Избран файл: {{selectedLogoImage}}\n      </span>\n      <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogo type=\"file\" id=\"file2\">\n      <br>\n      <br>\n      <button mat-raised-button color=\"primary\" class=\"add-restaurant-button text-white\" (click)=\"addRestaurant()\">\n        <mat-icon>add</mat-icon> <span>Добави</span>\n      </button>\n    </form>\n  </mat-card-content>\n</mat-card>\n");
 
 /***/ }),
 
@@ -175,7 +175,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"text-center\">Редактирате ресторант: {{restaurant.name}}</h2>\n<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <img mat-card-xl-image src=\"data:{{restaurant.contentType}};base64,{{restaurant.image}}\" alt=\"\">\n      </div>\n      <div class=\"col-md-8\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <mat-label>Статус на ресторант</mat-label>\n            <mat-select id=\"restaurant-status\" formControlName=\"active\">\n              <mat-option value=\"inactive\">неактивен</mat-option>\n              <mat-option value=\"active\">активен</mat-option>\n            </mat-select>\n          </mat-form-field>\n          <h3>Избери картинка</h3>\n          <button type=\"button\" mat-raised-button (click)=\"fileInput.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n          <span *ngIf=\"selectedImage\" class=\"mat-active\">\n        Избран файл: {{selectedImage}}\n      </span>\n          <input hidden (change)=\"onFileSelect($event)\" #fileInput type=\"file\" id=\"file\">\n          <button mat-raised-button color=\"primary\" class=\"edit-restaurant-button\" (click)=\"editRestaurant(restaurant.id)\"> <mat-icon>create</mat-icon> Редактирай</button>\n        </form>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<h2 class=\"text-center\">Редактирате ресторант: {{restaurant.name}}</h2>\n<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-4\">\n        <h2>Корица на ресторанта</h2>\n        <img mat-card-xl-image src=\"{{restaurant.coverImageUrl}}\" alt=\"cover image\">\n\n        <h2>Лого на ресторанта</h2>\n        <img mat-card-xl-image src=\"{{restaurant.logoImageUrl}}\" alt=\"logo image\">\n      </div>\n      <div class=\"col-md-8\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <mat-label>Статус на ресторант</mat-label>\n            <mat-select id=\"restaurant-status\" formControlName=\"active\">\n              <mat-option value=\"inactive\">неактивен</mat-option>\n              <mat-option value=\"active\">активен</mat-option>\n            </mat-select>\n          </mat-form-field>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <h3>Избери корица на ресторанта</h3>\n                <button type=\"button\" mat-raised-button (click)=\"fileInputCoverImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n                  Избран файл: {{selectedCoverImage}}\n                </span>\n                <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCoverImage type=\"file\" id=\"file-cover\">\n            </div>\n            <div class=\"col-md-6\">\n              <h3>Избери лого на ресторанта</h3>\n              <button type=\"button\" mat-raised-button (click)=\"fileInputLogoImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n                Избран файл: {{selectedLogoImage}}\n              </span>\n              <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogoImage type=\"file\" id=\"file-logo\">\n            </div>\n          </div>\n          <br>\n          <div class=\"row\"></div>\n          <button mat-raised-button color=\"primary\" class=\"edit-restaurant-button text-white\" (click)=\"editRestaurant(restaurant.id)\"> <mat-icon>save</mat-icon> Запази</button>\n        </form>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n");
 
 /***/ }),
 
@@ -201,7 +201,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"text-center\">\n  <h2>Всички ресторанти</h2>\n</div>\n<mat-divider></mat-divider>\n<input class=\"form-control\" type=\"text\" placeholder=\"Търси ресторант\" id=\"search-box\" (ngModelChange)=\"fetchRestaurants({pageIndex:0})\" [(ngModel)]=\"searchText\" aria-label=\"Search\">\n\n<div class=\"loading-spinner\" *ngIf=\"!restaurants\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n\n<div *ngIf=\"restaurants\">\n  <mat-card class=\"example-card\" *ngFor=\"let restaurant of restaurants\" id=\"restaurant-cards\">\n    <button class=\"right\" mat-icon-button [matMenuTriggerFor]=\"menu\" aria-label=\"Example icon-button with a menu\">\n      <mat-icon>more_vert</mat-icon>\n    </button>\n    <mat-menu #menu=\"matMenu\">\n      <button mat-menu-item (click)=\"goToProducts(restaurant.id)\">\n        <mat-icon>create</mat-icon>\n        <span>\n        Редактирай\n      </span>\n      </button>\n      <button *ngIf=\"isAdmin()\" mat-menu-item (click)=\"deleteRestaurant(restaurant)\">\n        <mat-icon>delete_forever</mat-icon>\n        <span>Изтрий</span>\n      </button>\n    </mat-menu>\n    <mat-card-header>\n      <div mat-card-avatar class=\"example-header-image\"></div>\n      <mat-card-title>\n        <a routerLink=\"/restaurants/{{restaurant.id}}/products\">{{restaurant.name}}</a>\n      </mat-card-title>\n      <mat-card-subtitle>{{restaurant.location}}</mat-card-subtitle>\n    </mat-card-header>\n    <mat-card-content class=\"text-center\">\n      <img mat-card-xl-image src=\"data:{{restaurant.contentType}};base64,{{restaurant.image}}\" alt=\"Restaurant photo\">\n    </mat-card-content>\n  </mat-card>\n\n    <mat-paginator [length]=\"totalElements\"\n                   [pageSize]=\"size\"\n                   [pageIndex]=\"page\"\n                   [pageSizeOptions]=\"[6]\"\n                   (page)=\"fetchRestaurants($event)\">\n    </mat-paginator>\n</div>\n\n\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"text-center\">\n  <h2>Всички ресторанти</h2>\n</div>\n<mat-divider></mat-divider>\n<input class=\"form-control\" type=\"text\" placeholder=\"Търси ресторант\" id=\"search-box\" (ngModelChange)=\"fetchRestaurants({pageIndex:0})\" [(ngModel)]=\"searchText\" aria-label=\"Search\">\n\n<div class=\"loading-spinner\" *ngIf=\"!restaurants\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n\n<div *ngIf=\"restaurants\">\n  <mat-card class=\"example-card\" *ngFor=\"let restaurant of restaurants\" id=\"restaurant-cards\">\n    <button class=\"right\" mat-icon-button [matMenuTriggerFor]=\"menu\" aria-label=\"Example icon-button with a menu\">\n      <mat-icon>more_vert</mat-icon>\n    </button>\n    <mat-menu #menu=\"matMenu\">\n      <button mat-menu-item (click)=\"goToProducts(restaurant.id)\">\n        <mat-icon>create</mat-icon>\n        <span>\n        Редактирай\n      </span>\n      </button>\n      <button *ngIf=\"isAdmin()\" mat-menu-item (click)=\"deleteRestaurant(restaurant)\">\n        <mat-icon>delete_forever</mat-icon>\n        <span>Изтрий</span>\n      </button>\n    </mat-menu>\n    <mat-card-header>\n      <div mat-card-avatar class=\"example-header-image\"></div>\n      <mat-card-title>\n        <a routerLink=\"/restaurants/{{restaurant.id}}/products\">{{restaurant.name}}</a>\n      </mat-card-title>\n      <mat-card-subtitle>{{restaurant.location}}</mat-card-subtitle>\n    </mat-card-header>\n    <mat-card-content class=\"text-center\">\n      <img mat-card-xl-image src=\"{{restaurant.coverImageUrl}}\" alt=\"Restaurant photo\">\n    </mat-card-content>\n  </mat-card>\n\n    <mat-paginator [length]=\"totalElements\"\n                   [pageSize]=\"size\"\n                   [pageIndex]=\"page\"\n                   [pageSizeOptions]=\"[6]\"\n                   (page)=\"fetchRestaurants($event)\">\n    </mat-paginator>\n</div>\n\n\n");
 
 /***/ }),
 
@@ -399,7 +399,7 @@ AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
                 useClass: _security_token_interceptor__WEBPACK_IMPORTED_MODULE_17__["TokenInterceptor"],
                 multi: true
             }],
-        entryComponents: [_components_product_create_product_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_27__["CreateNewCategoryDialogComponent"]],
+        entryComponents: [_components_product_create_product_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_27__["CreateNewCategoryDialogComponent"], _components_restaurant_list_restaurants_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"]],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
     })
 ], AppModule);
@@ -788,7 +788,7 @@ let CreateProductComponent = class CreateProductComponent {
             allergens: [],
             tags: [],
             category: [],
-            image: ['']
+            imageUrl: ['']
         });
     }
     ngOnInit() {
@@ -809,7 +809,7 @@ let CreateProductComponent = class CreateProductComponent {
         this.selectedMenuId = this.selectedMenu.value || ['default'];
         this.selectedRestaurantId = this.selectedRestaurant.value;
         const formData = new FormData();
-        formData.append('file', this.form.get('image').value);
+        formData.append('file', this.form.get('imageUrl').value);
         this.restaurantService.addProduct(this.selectedRestaurant.value, this.product)
             .then(res => {
             this.productService.addImageToProduct(res.body.id, formData)
@@ -845,7 +845,7 @@ let CreateProductComponent = class CreateProductComponent {
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
             this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
-            this.form.get('image').setValue(file);
+            this.form.get('imageUrl').setValue(file);
         }
     }
     addNewCategory(selectedRestaurantId, event) {
@@ -983,7 +983,7 @@ let EditProductComponent = class EditProductComponent {
             allergens: [],
             tags: [],
             category: [],
-            image: ['']
+            imageUrl: ['']
         });
     }
     ngOnInit() {
@@ -1000,7 +1000,7 @@ let EditProductComponent = class EditProductComponent {
             allergens: [this.product.allergens],
             tags: [this.product.tags],
             category: [this.product.category],
-            image: ['']
+            imageUrl: ['']
         });
     }
     onFileSelect(event) {
@@ -1009,7 +1009,7 @@ let EditProductComponent = class EditProductComponent {
             this.isSelectedNewImage = true;
             const file = event.target.files[0];
             this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
-            this.form.get('image').setValue(file);
+            this.form.get('imageUrl').setValue(file);
         }
     }
     editProduct() {
@@ -1025,7 +1025,7 @@ let EditProductComponent = class EditProductComponent {
                 .then(response => {
                 if (this.isSelectedNewImage) {
                     const formData = new FormData();
-                    formData.append('file', this.form.get('image').value);
+                    formData.append('file', this.form.get('imageUrl').value);
                     this.productService.addImageToProduct(this.product.id, formData)
                         .then(res => {
                         this.toastrService.success('Успешно редактирахте продукта');
@@ -1403,19 +1403,25 @@ let CreateRestaurantComponent = class CreateRestaurantComponent {
         this.form = formBuilder.group({
             name: [],
             location: [],
-            image: ['']
+            coverImage: [''],
+            logoImage: ['']
         });
     }
     ngOnInit() {
         this.restaurant.name = '';
         this.restaurant.location = '';
     }
-    onFileSelect(event) {
-        var _a;
+    onFileSelect(event, imageType) {
+        var _a, _b;
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
-            this.form.get('image').setValue(file);
+            if (imageType === 'coverImage') {
+                this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            }
+            else {
+                this.selectedLogoImage = (_b = event.target.files[0]) === null || _b === void 0 ? void 0 : _b.name;
+            }
+            this.form.get(imageType).setValue(file);
         }
     }
     addRestaurant() {
@@ -1426,8 +1432,15 @@ let CreateRestaurantComponent = class CreateRestaurantComponent {
         this.restaurantService.addRestaurant(this.restaurant)
             .then(res => {
             const formData = new FormData();
-            formData.append('file', this.form.get('image').value);
-            this.restaurantService.addImageToRestaurant(formData, res.body.id).then(response => {
+            const currentRestaurantId = res.body.id;
+            formData.append('file', this.form.get('coverImage').value);
+            this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'coverImage')
+                .then(response => {
+                const formData = new FormData();
+                formData.append('file', this.form.get('logoImage').value);
+                return this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'logoImage');
+            })
+                .then(response => {
                 if (response.status === 200) {
                     this.toastrService.success('Успешно добавен ресторант');
                     this.setEmptyValuesForFormGroup(this.form);
@@ -1481,7 +1494,7 @@ CreateRestaurantComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("mat-card {\n  max-width: 800px;\n  margin: 0 auto;\n  text-align: center;\n}\n\nmat-form-field {\n  display: block;\n}\n\n.edit-restaurant-button {\n  margin-left: 10px;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9yZXN0YXVyYW50L2VkaXQtcmVzdGF1cmFudC9lZGl0LXJlc3RhdXJhbnQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2Qsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcmVzdGF1cmFudC9lZGl0LXJlc3RhdXJhbnQvZWRpdC1yZXN0YXVyYW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtY2FyZCB7XG4gIG1heC13aWR0aDogODAwcHg7XG4gIG1hcmdpbjogMCBhdXRvO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbm1hdC1mb3JtLWZpZWxkIHtcbiAgZGlzcGxheTogYmxvY2s7XG59XG5cbi5lZGl0LXJlc3RhdXJhbnQtYnV0dG9uIHtcbiAgbWFyZ2luLWxlZnQ6IDEwcHg7XG59XG4iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("mat-card {\n  max-width: 800px;\n  margin: 0 auto;\n  text-align: center;\n}\n\nmat-form-field {\n  display: block;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9yZXN0YXVyYW50L2VkaXQtcmVzdGF1cmFudC9lZGl0LXJlc3RhdXJhbnQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2Qsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0UsY0FBYztBQUNoQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcmVzdGF1cmFudC9lZGl0LXJlc3RhdXJhbnQvZWRpdC1yZXN0YXVyYW50LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtY2FyZCB7XG4gIG1heC13aWR0aDogODAwcHg7XG4gIG1hcmdpbjogMCBhdXRvO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbm1hdC1mb3JtLWZpZWxkIHtcbiAgZGlzcGxheTogYmxvY2s7XG59XG4iXX0= */");
 
 /***/ }),
 
@@ -1522,6 +1535,8 @@ let EditRestaurantComponent = class EditRestaurantComponent {
             name: [],
             location: [],
             image: [],
+            logoImage: [],
+            coverImage: [],
             active: []
         });
     }
@@ -1532,6 +1547,8 @@ let EditRestaurantComponent = class EditRestaurantComponent {
                 name: this.restaurant.name,
                 location: this.restaurant.location,
                 image: this.restaurant.image,
+                logoImage: this.restaurant.logoImageUrl,
+                coverImage: this.restaurant.coverImageUrl,
                 active: this.restaurant.active ? "active" : "inactive"
             });
         });
@@ -1543,29 +1560,37 @@ let EditRestaurantComponent = class EditRestaurantComponent {
             this.restaurant.active = this.form.get("active").value === "active";
             this.restaurantService.patchUpdateRestaurant(restaurantId, this.restaurant)
                 .then(response => {
-                if (response.status === 200 && this.isSelectedNewImage) {
+                const promises = [];
+                if (this.isSelectedNewCover) {
                     const formData = new FormData();
-                    formData.append('file', this.form.get('image').value);
-                    this.restaurantService.addImageToRestaurant(formData, this.restaurant.id)
-                        .then(() => {
-                        this.router.navigateByUrl('/restaurants');
-                        this.toastrService.success('Успешно редактирахте ресторанта');
-                    });
+                    formData.append('file', this.form.get('coverImage').value);
+                    promises.push(this.restaurantService.addImageToRestaurant(formData, this.restaurant.id, 'coverImage'));
                 }
-                else {
+                if (this.isSelectedNewLogo) {
+                    const formData = new FormData();
+                    formData.append('file', this.form.get('logoImage').value);
+                    promises.push(this.restaurantService.addImageToRestaurant(formData, this.restaurant.id, 'logoImage'));
+                }
+                Promise.all(promises).then(() => {
                     this.router.navigateByUrl('/restaurants');
                     this.toastrService.success('Успешно редактирахте ресторанта');
-                }
+                });
             }).catch(err => { _global_app_settings__WEBPACK_IMPORTED_MODULE_6__["AppSettings"].redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
         });
     }
-    onFileSelect(event) {
-        var _a;
+    onFileSelect(event, imageType) {
+        var _a, _b;
         if (event.target.files.length > 0) {
-            this.isSelectedNewImage = true;
             const file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
-            this.form.get('image').setValue(file);
+            if (imageType === 'coverImage') {
+                this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+                this.isSelectedNewCover = true;
+            }
+            else {
+                this.selectedLogoImage = (_b = event.target.files[0]) === null || _b === void 0 ? void 0 : _b.name;
+                this.isSelectedNewLogo = true;
+            }
+            this.form.get(imageType).setValue(file);
         }
     }
     fetchRestaurants() {
@@ -2047,7 +2072,7 @@ class AppSettings {
         return representationRoles;
     }
 }
-AppSettings.API_ENDPOINT = 'https://restaurant-management.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
 
 /***/ }),
@@ -2675,8 +2700,8 @@ let RestaurantService = class RestaurantService {
         return this.httpClient.post(`${_global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].API_ENDPOINT}/api/restaurant/create`, restaurant, { observe: 'response' })
             .toPromise();
     }
-    addImageToRestaurant(formData, restaurantId) {
-        return this.httpClient.post(`${_global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].API_ENDPOINT}/api/restaurant/${restaurantId}/upload-image`, formData, { observe: 'response' })
+    addImageToRestaurant(formData, restaurantId, imageType) {
+        return this.httpClient.post(`${_global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].API_ENDPOINT}/api/restaurant/${restaurantId}/upload-image?imageType=${imageType}`, formData, { observe: 'response' })
             .toPromise();
     }
     deleteRestaurant(id) {

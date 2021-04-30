@@ -3,8 +3,7 @@ import {CategoryModel} from './category.model';
 export interface ProductModel {
   id?: string;
   title?: string;
-  image?: any;
-  contentType?: string;
+  imageUrl?: string;
   price?: number;
   quantity?: number;
   description?: string;

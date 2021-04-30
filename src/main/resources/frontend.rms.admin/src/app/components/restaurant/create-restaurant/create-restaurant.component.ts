@@ -15,7 +15,8 @@ export class CreateRestaurantComponent implements OnInit {
   private restaurant: RestaurantListModel = {};
   form: FormGroup;
   fileData: File = null;
-  selectedImage: string;
+  selectedCoverImage: string;
+  selectedLogoImage: string;
   constructor(private restaurantService: RestaurantService,
               private formBuilder: FormBuilder,
               private toastrService: ToastrService,
@@ -23,7 +24,8 @@ export class CreateRestaurantComponent implements OnInit {
     this.form = formBuilder.group({
         name: [],
         location: [],
-        image: ['']
+        coverImage: [''],
+        logoImage: ['']
     });
   }
 
@@ -32,11 +34,15 @@ export class CreateRestaurantComponent implements OnInit {
     this.restaurant.location = '';
   }
 
-  onFileSelect(event) {
+  onFileSelect(event, imageType) {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
-      this.selectedImage = event.target.files[0]?.name;
-      this.form.get('image').setValue(file);
+      if (imageType === 'coverImage') {
+        this.selectedCoverImage = event.target.files[0]?.name;
+      } else {
+        this.selectedLogoImage = event.target.files[0]?.name;
+      }
+      this.form.get(imageType).setValue(file);
     }
   }
 
@@ -49,14 +55,21 @@ export class CreateRestaurantComponent implements OnInit {
     this.restaurantService.addRestaurant(this.restaurant)
       .then(res => {
         const formData = new FormData();
-        formData.append('file', this.form.get('image').value);
-        this.restaurantService.addImageToRestaurant(formData, res.body.id).then(response => {
-          if (response.status === 200) {
-            this.toastrService.success('Успешно добавен ресторант');
-            this.setEmptyValuesForFormGroup(this.form);
-          } else {
-            this.toastrService.warning('Възникна проблем при създаването на ресторанта');
-          }
+        const currentRestaurantId = res.body.id;
+        formData.append('file', this.form.get('coverImage').value);
+        this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'coverImage')
+          .then(response => {
+            const formData = new FormData();
+            formData.append('file', this.form.get('logoImage').value);
+            return this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'logoImage')
+          })
+          .then(response => {
+            if (response.status === 200) {
+              this.toastrService.success('Успешно добавен ресторант');
+              this.setEmptyValuesForFormGroup(this.form);
+            } else {
+              this.toastrService.warning('Възникна проблем при създаването на ресторанта');
+            }
         });
     }).catch(err => {AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
   }

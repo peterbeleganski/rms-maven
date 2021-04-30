@@ -50,7 +50,7 @@ export class CreateProductComponent implements OnInit {
       allergens: [],
       tags: [],
       category: [],
-      image: ['']
+      imageUrl: ['']
   });
   }
 
@@ -73,7 +73,7 @@ export class CreateProductComponent implements OnInit {
     this.selectedMenuId = this.selectedMenu.value || ['default'];
     this.selectedRestaurantId = this.selectedRestaurant.value;
     const formData = new FormData();
-    formData.append('file', this.form.get('image').value);
+    formData.append('file', this.form.get('imageUrl').value);
     this.restaurantService.addProduct(this.selectedRestaurant.value, this.product)
       .then(res => {
         this.productService.addImageToProduct(res.body.id, formData)
@@ -106,7 +106,7 @@ export class CreateProductComponent implements OnInit {
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.selectedImage = event.target.files[0]?.name;
-      this.form.get('image').setValue(file);
+      this.form.get('imageUrl').setValue(file);
     }
   }
 

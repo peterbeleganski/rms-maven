@@ -65,7 +65,7 @@ import {EditProductComponent} from "./components/product/edit-product/edit-produ
     useClass: TokenInterceptor,
     multi: true
   }],
-  entryComponents: [CreateNewCategoryDialogComponent],
+  entryComponents: [CreateNewCategoryDialogComponent, ConfirmationDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
