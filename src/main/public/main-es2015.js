@@ -1413,7 +1413,7 @@ let CreateRestaurantComponent = class CreateRestaurantComponent {
         var _a;
         if (event.target.files.length > 0) {
             const file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
             this.form.get('image').setValue(file);
         }
     }
@@ -1563,7 +1563,7 @@ let EditRestaurantComponent = class EditRestaurantComponent {
         if (event.target.files.length > 0) {
             this.isSelectedNewImage = true;
             const file = event.target.files[0];
-            this.selectedImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
+            this.selectedCoverImage = (_a = event.target.files[0]) === null || _a === void 0 ? void 0 : _a.name;
             this.form.get('image').setValue(file);
         }
     }

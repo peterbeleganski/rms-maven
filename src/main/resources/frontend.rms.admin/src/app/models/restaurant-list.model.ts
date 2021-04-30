@@ -5,6 +5,8 @@ export interface RestaurantListModel {
   id?: string;
   name?: string;
   image?: any;
+  coverImageUrl?: string;
+  logoImageUrl?: string;
   location?: string;
   contentType?: string;
   menus?: string[];

@@ -3,7 +3,11 @@
   <mat-card-content>
     <div class="row">
       <div class="col-md-4">
-        <img mat-card-xl-image src="data:{{restaurant.contentType}};base64,{{restaurant.image}}" alt="">
+        <h2>Корица на ресторанта</h2>
+        <img mat-card-xl-image src="{{restaurant.coverImageUrl}}" alt="cover image">
+
+        <h2>Лого на ресторанта</h2>
+        <img mat-card-xl-image src="{{restaurant.logoImageUrl}}" alt="logo image">
       </div>
       <div class="col-md-8">
         <form [formGroup]="form">
@@ -26,13 +30,29 @@
               <mat-option value="active">активен</mat-option>
             </mat-select>
           </mat-form-field>
-          <h3>Избери картинка</h3>
-          <button type="button" mat-raised-button (click)="fileInput.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
-          <span *ngIf="selectedImage" class="mat-active">
-        Избран файл: {{selectedImage}}
-      </span>
-          <input hidden (change)="onFileSelect($event)" #fileInput type="file" id="file">
-          <button mat-raised-button color="primary" class="edit-restaurant-button" (click)="editRestaurant(restaurant.id)"> <mat-icon>create</mat-icon> Редактирай</button>
+          <div class="row">
+            <div class="col-md-6">
+                <h3>Избери корица на ресторанта</h3>
+                <button type="button" mat-raised-button (click)="fileInputCoverImage.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
+              <br>
+              <span *ngIf="selectedCoverImage" class="mat-active">
+                  Избран файл: {{selectedCoverImage}}
+                </span>
+                <input hidden (change)="onFileSelect($event, 'coverImage')" #fileInputCoverImage type="file" id="file-cover">
+            </div>
+            <div class="col-md-6">
+              <h3>Избери лого на ресторанта</h3>
+              <button type="button" mat-raised-button (click)="fileInputLogoImage.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
+              <br>
+              <span *ngIf="selectedLogoImage" class="mat-active">
+                Избран файл: {{selectedLogoImage}}
+              </span>
+              <input hidden (change)="onFileSelect($event, 'logoImage')" #fileInputLogoImage type="file" id="file-logo">
+            </div>
+          </div>
+          <br>
+          <div class="row"></div>
+          <button mat-raised-button color="primary" class="edit-restaurant-button text-white" (click)="editRestaurant(restaurant.id)"> <mat-icon>save</mat-icon> Запази</button>
         </form>
       </div>
     </div>

@@ -13,7 +13,7 @@
   <mat-card-content>
     <div class="row">
       <div class="col-md-5">
-        <img mat-card-xl-image src="data:{{product.contentType}};base64,{{product.image}}" alt="">
+        <img mat-card-xl-image src="{{product.imageUrl}}" alt="">
       </div>
       <div class="col-md-7">
         <form [formGroup]="form">

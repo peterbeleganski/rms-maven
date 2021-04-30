@@ -1,9 +1,8 @@
 package com.restaurant.management.service;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.client.gridfs.model.GridFSFile;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import com.restaurant.management.controller.AzureStorage;
 import com.restaurant.management.exception.EntityNotFoundException;
 import com.restaurant.management.exception.ProductImportFailedException;
 import com.restaurant.management.model.Product;
@@ -12,7 +11,6 @@ import com.restaurant.management.repository.CategoryRepository;
 import com.restaurant.management.repository.ProductRepository;
 import com.restaurant.management.repository.RestaurantRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -36,42 +34,52 @@ import java.util.List;
 @Service
 public class ProductService extends DefaultCrudService<Product> {
 
-    private final GridFsTemplate gridFsTemplate;
-
-    private final GridFsOperations operations;
-
     private final MongoTemplate mongoTemplate;
 
     private final RestaurantRepository restaurantRepository;
 
     private final CategoryRepository categoryRepository;
 
-    public ProductService(GridFsTemplate gridFsTemplate,
-                          GridFsOperations operations,
-                          MongoTemplate mongoTemplate,
+    private final AzureStorage azureStorage;
+
+    public ProductService(MongoTemplate mongoTemplate,
                           ProductRepository productRepository,
                           RestaurantRepository restaurantRepository,
-                          CategoryRepository categoryRepository) {
-        this.gridFsTemplate = gridFsTemplate;
-        this.operations = operations;
+                          CategoryRepository categoryRepository,
+                          AzureStorage azureStorage) {
         this.mongoTemplate = mongoTemplate;
         crudRepository = productRepository;
         this.restaurantRepository = restaurantRepository;
         this.categoryRepository = categoryRepository;
+        this.azureStorage = azureStorage;
     }
 
     public void addImageToProduct(String productId, MultipartFile file) throws IOException {
         Product product = crudRepository.findById(productId).orElseThrow();
-        ObjectId store = gridFsTemplate.store(file.getInputStream(), file.getName(), file.getContentType(), new BasicDBObject());
-        GridFSFile img = gridFsTemplate.findOne(new Query(Criteria.where("_id").is(store.toString())));
-        if (img != null) {
-            String contentType = (String) img.getMetadata().get("_contentType");
-            product.setContentType(contentType);
-            product.setImage(operations.getResource(img).getInputStream().readAllBytes());
-            product.setImageId(img.getObjectId().toString());
+
+        Restaurant restaurant = restaurantRepository.findById(product.getRestaurantId()).orElseThrow();
+
+        if (file == null) {
+            throw new RuntimeException("file is not present!");
         }
 
+        deletePreviousFilesIfExisting(product);
+
+        String fileExtension = file.getContentType().split("/")[1];
+        String filePath = restaurant.getName() + "/products/" + productId + "-"+ System.currentTimeMillis() + "." + fileExtension;
+
+        String createdImage = azureStorage.createFile(filePath, file.getBytes());
+
+        product.setImageUrl(createdImage);
+        product.setImageBlobUrl(filePath);
+
         crudRepository.save(product);
+    }
+
+    private void deletePreviousFilesIfExisting(Product product) {
+        if (product.getImageBlobUrl() != null) {
+            azureStorage.deleteFile(product.getImageBlobUrl());
+        }
     }
 
     public Long getCount() {
@@ -106,9 +114,8 @@ public class ProductService extends DefaultCrudService<Product> {
     }
 
     public void deleteProduct(Product product) {
+        azureStorage.deleteFile(product.getImageBlobUrl());
         crudRepository.delete(product);
-
-        gridFsTemplate.delete(new Query(Criteria.where("_id").is(product.getImageId())));
     }
 
     public int importProducts(String restaurantId, MultipartFile importFile) {

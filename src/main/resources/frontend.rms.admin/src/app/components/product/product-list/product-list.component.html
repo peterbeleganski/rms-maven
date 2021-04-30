@@ -48,7 +48,7 @@
           <div class="example-element-detail"
                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
             <div class="example-element-diagram">
-              <div class="example-element-symbol"> <img mat-card-sm-image class="image-sm" src="data:{{element.contentType}};base64,{{element.image}}" alt="Restaurant photo"></div>
+              <div class="example-element-symbol"> <img mat-card-sm-image class="image-sm" src="{{element.imageUrl}}" alt="Restaurant photo"></div>
             </div>
             <div class="example-element-description">
               <span class="example-element-description-attribution">Описание на продукта:</span>

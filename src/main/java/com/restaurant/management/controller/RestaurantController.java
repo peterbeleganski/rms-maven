@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,12 +28,11 @@ public class RestaurantController extends CrudController<Restaurant> {
 
     private final RestaurantService restaurantService;
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/all", produces= MediaType.APPLICATION_JSON_VALUE)
     public HttpEntity<Page<RestaurantResponse>> listRestaurants(@RequestParam(required = false) String ownerUsername,
                                                                 @RequestParam(required = false) String searchTerm,
                                                                 @RequestParam(required = false) String page,
                                                                 @RequestParam(required = false) String size) {
-
         if (page == null || size == null) {
             return ResponseEntity.ok(restaurantService.getAllRestaurants(PageRequest.of(0, Integer.MAX_VALUE), searchTerm, ownerUsername));
         }
@@ -58,8 +58,8 @@ public class RestaurantController extends CrudController<Restaurant> {
     }
 
     @PostMapping(path = "/{restaurantId}/upload-image")
-    public HttpEntity<Restaurant> uploadImage(@PathVariable String restaurantId, @RequestParam("file") MultipartFile file) throws IOException {
-        return ResponseEntity.ok(restaurantService.addImageToRestaurant(restaurantId, file));
+    public HttpEntity<Restaurant> uploadImage(@PathVariable String restaurantId, @RequestParam("file") MultipartFile file, @RequestParam String imageType) throws IOException {
+        return ResponseEntity.ok(restaurantService.addImageToRestaurant(restaurantId, file, imageType));
     }
 
     @Override

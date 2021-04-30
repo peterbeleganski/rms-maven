@@ -35,9 +35,9 @@ public class Product extends BaseObject {
     @Size(max = 200)
     private List<String> allergens;
 
-    private byte[] image;
+    private String imageUrl;
 
-    private String imageId;
+    private String imageBlobUrl;
 
     private String contentType;
 
