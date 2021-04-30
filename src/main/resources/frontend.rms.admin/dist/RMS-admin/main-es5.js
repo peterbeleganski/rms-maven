@@ -3821,7 +3821,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       return AppSettings;
     }();
 
-    AppSettings.API_ENDPOINT = 'https://restaurant-management.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+    AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
     /***/
   },
