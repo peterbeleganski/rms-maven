@@ -913,15 +913,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    /*! ../../../app.component */
+    "./src/app/app.component.ts");
 
     var LoginComponent = /*#__PURE__*/function () {
-      function LoginComponent(formBuilder, authenticationService, toastrService, router) {
+      function LoginComponent(formBuilder, authenticationService, toastrService, router, appComponent) {
         _classCallCheck(this, LoginComponent);
 
         this.formBuilder = formBuilder;
         this.authenticationService = authenticationService;
         this.toastrService = toastrService;
         this.router = router;
+        this.appComponent = appComponent;
         this.form = formBuilder.group({
           username: [],
           password: []
@@ -951,6 +958,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                           }
                         });
                       }
+
+                      _this.appComponent.sideBarOpened = true;
 
                       _this.authenticationService.setSecurityObject(data.body);
 
@@ -991,6 +1000,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"]
       }, {
         type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]
+      }, {
+        type: _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"]
       }];
     };
 
@@ -1069,12 +1080,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _global_app_settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
     /*! ../../../global/app.settings */
     "./src/app/global/app.settings.ts");
+    /* harmony import */
+
+
+    var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ../../../app.component */
+    "./src/app/app.component.ts");
 
     var NavigationComponent = /*#__PURE__*/function () {
-      function NavigationComponent(authenticationService) {
+      function NavigationComponent(authenticationService, appComponent) {
         _classCallCheck(this, NavigationComponent);
 
         this.authenticationService = authenticationService;
+        this.appComponent = appComponent;
       }
 
       _createClass(NavigationComponent, [{
@@ -1104,6 +1122,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "logout",
         value: function logout() {
+          this.appComponent.sideBarOpened = false;
           this.authenticationService.logout();
         }
       }]);
@@ -1114,6 +1133,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     NavigationComponent.ctorParameters = function () {
       return [{
         type: _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticationService"]
+      }, {
+        type: _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]
       }];
     };
 
@@ -3800,7 +3821,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       return AppSettings;
     }();
 
-    AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+    AppSettings.API_ENDPOINT = 'https://restaurant-management.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
     /***/
   },

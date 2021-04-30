@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../../services/authentication.service';
 import {SecurityObjectModel} from '../../../models/security-object.model';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private authenticationService: AuthenticationService,
               private toastrService: ToastrService,
-              private router: Router) {
+              private router: Router,
+              private appComponent: AppComponent) {
     this.form = formBuilder.group({
       username: [],
       password: []
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
                     message: 'Клиенти не могат да достъпват администраторската система'
                   }});
         }
+        this.appComponent.sideBarOpened = true;
         this.authenticationService.setSecurityObject(data.body as SecurityObjectModel);
         this.toastrService.success('Успешен вход!');
         this.router.navigateByUrl('/restaurants');

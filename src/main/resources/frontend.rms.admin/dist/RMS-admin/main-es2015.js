@@ -527,6 +527,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../services/authentication.service */ "./src/app/services/authentication.service.ts");
 /* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../app.component */ "./src/app/app.component.ts");
+
 
 
 
@@ -534,11 +536,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginComponent = class LoginComponent {
-    constructor(formBuilder, authenticationService, toastrService, router) {
+    constructor(formBuilder, authenticationService, toastrService, router, appComponent) {
         this.formBuilder = formBuilder;
         this.authenticationService = authenticationService;
         this.toastrService = toastrService;
         this.router = router;
+        this.appComponent = appComponent;
         this.form = formBuilder.group({
             username: [],
             password: []
@@ -558,6 +561,7 @@ let LoginComponent = class LoginComponent {
                         }
                     });
                 }
+                this.appComponent.sideBarOpened = true;
                 this.authenticationService.setSecurityObject(data.body);
                 this.toastrService.success('Успешен вход!');
                 this.router.navigateByUrl('/restaurants');
@@ -579,7 +583,8 @@ LoginComponent.ctorParameters = () => [
     { type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"] },
     { type: _services_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"] },
     { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: _app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"] }
 ];
 LoginComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -620,13 +625,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/authentication.service */ "./src/app/services/authentication.service.ts");
 /* harmony import */ var _global_app_settings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../global/app.settings */ "./src/app/global/app.settings.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../app.component */ "./src/app/app.component.ts");
+
 
 
 
 
 let NavigationComponent = class NavigationComponent {
-    constructor(authenticationService) {
+    constructor(authenticationService, appComponent) {
         this.authenticationService = authenticationService;
+        this.appComponent = appComponent;
     }
     ngOnInit() {
     }
@@ -646,11 +654,13 @@ let NavigationComponent = class NavigationComponent {
         return _global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].getRepresentationTextForRoles(roles);
     }
     logout() {
+        this.appComponent.sideBarOpened = false;
         this.authenticationService.logout();
     }
 };
 NavigationComponent.ctorParameters = () => [
-    { type: _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticationService"] }
+    { type: _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["AuthenticationService"] },
+    { type: _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"] }
 ];
 NavigationComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2072,7 +2082,7 @@ class AppSettings {
         return representationRoles;
     }
 }
-AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+AppSettings.API_ENDPOINT = 'https://restaurant-management.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
 
 /***/ }),

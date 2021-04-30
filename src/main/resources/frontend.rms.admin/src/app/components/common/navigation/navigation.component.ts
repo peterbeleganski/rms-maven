@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SecurityObjectModel} from '../../../models/security-object.model';
 import {AuthenticationService} from '../../../services/authentication.service';
 import {AppSettings} from '../../../global/app.settings';
+import {AppComponent} from "../../../app.component";
 
 @Component({
   selector: 'app-navigation',
@@ -9,7 +10,7 @@ import {AppSettings} from '../../../global/app.settings';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  constructor(private authenticationService: AuthenticationService) {
+  constructor(private authenticationService: AuthenticationService, private appComponent: AppComponent) {
   }
 
   ngOnInit() {
@@ -33,6 +34,7 @@ export class NavigationComponent implements OnInit {
   }
 
   logout() {
+    this.appComponent.sideBarOpened = false;
     this.authenticationService.logout();
   }
 }
