@@ -21,4 +21,17 @@ public class AppConfig {
         factory.setMaxRequestSize(DataSize.ofBytes(512000000L));
         return factory.createMultipartConfig();
     }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                        .allowedHeaders("*")
+                        .allowedOrigins("*");
+            }
+        };
+    }
 }
