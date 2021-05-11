@@ -32,5 +32,5 @@ jobs:
         app-name: meniuto-admin
         slot-name: Production
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_73F5739EBD634BAE99C95581F1AD0812 }}
-        package: ${{ github.workspace }}/target/*.war
+        package: ${{ github.workspace }}/target/*.jar
 
