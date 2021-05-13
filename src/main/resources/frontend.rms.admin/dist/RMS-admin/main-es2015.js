@@ -2082,7 +2082,7 @@ class AppSettings {
         return representationRoles;
     }
 }
-AppSettings.API_ENDPOINT = 'https://meniuto-portal.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
 
 /***/ }),
