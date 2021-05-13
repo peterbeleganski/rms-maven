@@ -19,13 +19,13 @@ public class AzureStorage {
 
     private static final String SAS = "?sv=2020-02-10&ss=bfqt&srt=sco&sp=rwdlacupx&se=2021-04-30T19:18:14Z&st=2021-04-29T11:18:14Z&spr=https,http&sig=6BmiseqYUScc9zB6TRj2uq3nMe%2B4%2FmB2wTpTQaOmOBk%3D";
 
-    private static final String CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=rmsfiles;AccountKey=Pdeyfz7cTC/oQjR2ZavaVXG/yFVyF4JPCLlvTKKAvn1OW/Kde8MnLIHxr/Y4J+spJJlUNKFO0uf1FQS0rakY8w==;EndpointSuffix=core.windows.net";
+    private static final String CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=meniutorelease;AccountKey=QUodzQlqC4H8i5CgomAq0flU+iozo3jLjhRrUIyZfowJFemE/lyvzLz4jVYDEy8dh3py4npkp3wUF3O59yNDvQ==;EndpointSuffix=core.windows.net";
 
     private static final String SHARE_NAME = "images";
 
-    private static final String ACCOUNT_NAME = "rmsfiles";
+    private static final String ACCOUNT_NAME = "meniutorelease";
 
-    private static final String ACCOUNT_KEY = "Pdeyfz7cTC/oQjR2ZavaVXG/yFVyF4JPCLlvTKKAvn1OW/Kde8MnLIHxr/Y4J+spJJlUNKFO0uf1FQS0rakY8w==";
+    private static final String ACCOUNT_KEY = "QUodzQlqC4H8i5CgomAq0flU+iozo3jLjhRrUIyZfowJFemE/lyvzLz4jVYDEy8dh3py4npkp3wUF3O59yNDvQ==";
 
     private final ShareServiceClient shareServiceClient = new ShareServiceClientBuilder().connectionString(CONNECTION_STRING).buildClient();
 
@@ -37,7 +37,7 @@ public class AzureStorage {
 
     private final BlobContainerClient blobContainerClient = storageClient.getBlobContainerClient("$web");
 
-    private final static String SOURCE_URL = "https://rmsfiles.blob.core.windows.net/$web/";
+    private final static String SOURCE_URL = "https://meniutorelease.blob.core.windows.net/$web/";
 
     @SneakyThrows
     public String createFile(String filePath, byte[] data) {
