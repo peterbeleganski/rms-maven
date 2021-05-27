@@ -6,76 +6,100 @@
 <mat-card>
   <mat-card-content>
     <form [formGroup]="form">
-      <mat-form-field>
-        <mat-label>Изберете ресторант</mat-label>
-        <mat-select formControlName="selectedRestaurant" (selectionChange)="onSelectRestaurant()">
-          <mat-option *ngFor="let restaurant of restaurants" [value]="restaurant.id">
-            {{restaurant.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Изберете ресторант</mat-label>
+            <mat-select formControlName="selectedRestaurant" (selectionChange)="onSelectRestaurant()">
+              <mat-option *ngFor="let restaurant of restaurants" [value]="restaurant.id">
+                {{restaurant.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="full-width-input">
+            <input matInput placeholder="Въведете име на продукт" formControlName="title" required>
+            <mat-error>
+              Моля въведете име на продукта
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-4">
+          <mat-form-field class="full-width-input">
+            <input type="number" matInput placeholder="Въведете цена на продукт" formControlName="price" required>
+            <mat-error>
+              Моля въведете цена на продукта
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!--<mat-form-field>
         <mat-label>Изберете меню</mat-label>
         <mat-select formControlName="selectedMenu" multiple>
           <mat-option *ngFor="let menu of menus" [value]="menu">
             {{menu}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <input matInput placeholder="Въведете име на продукт" formControlName="title" required>
-        <mat-error>
-          Моля въведете име на продукта
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <input type="number" matInput placeholder="Въведете цена на продукт" formControlName="price" required>
-        <mat-error>
-          Моля въведете цена на продукта
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <textarea matInput placeholder="Въведете описание на продукт" formControlName="description" required> </textarea>
-        <mat-error>
-          Моля въведете описание на продукта
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <input matInput placeholder="Въведете алергени за продукт пример: (яйца,мляко,подправки)" formControlName="allergens" required>
-        <mat-error>
-          Моля въведете алергени на продукта
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="full-width-input">
-        <input matInput placeholder="Въведете тагове за продукт" formControlName="tags" required>
-        <mat-error>
-          Моля въведете тагове на продукта
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <div class="row">
-          <div class="col-md-10">
-            <mat-label>Изберете категория</mat-label>
-            <mat-select formControlName="category">
-              <mat-option *ngFor="let category of categories" [value]="category">
-                {{category.title}}
-              </mat-option>
-            </mat-select>
-          </div>
-          <div class="col-md-2">
-            <button mat-icon-button color="primary" (click)="addNewCategory(selectedRestaurantId, $event)">
-              <mat-icon>add</mat-icon>
-            </button>
-          </div>
+      </mat-form-field>-->
+      <div class="row">
+        <div class="col-md-5">
+          <mat-form-field class="full-width-input">
+            <input matInput placeholder="Въведете алергени за продукт пример: (яйца,мляко,подправки)" formControlName="allergens" required>
+            <mat-error>
+              Моля въведете алергени на продукта
+            </mat-error>
+          </mat-form-field>
         </div>
-      </mat-form-field>
-      <h3>Избери картинка</h3>
-      <button type="button" mat-raised-button (click)="fileInput.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
-      <span *ngIf="selectedImage" class="mat-active">
+        <div class="col-md-5">
+          <mat-form-field class="full-width-input">
+            <input matInput placeholder="Въведете тагове за продукт" formControlName="tags" required>
+            <mat-error>
+              Моля въведете тагове на продукта
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7">
+          <mat-form-field class="full-width-input">
+            <textarea matInput placeholder="Въведете описание на продукт" formControlName="description" required> </textarea>
+            <mat-error>
+              Моля въведете описание на продукта
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <mat-form-field>
+            <div class="row">
+              <div class="col-md-10">
+                <mat-label>Изберете категория</mat-label>
+                <mat-select formControlName="category">
+                  <mat-option *ngFor="let category of categories" [value]="category">
+                    {{category.title}}
+                  </mat-option>
+                </mat-select>
+              </div>
+              <div class="col-md-2">
+                <button mat-icon-button color="primary" (click)="addNewCategory(selectedRestaurantId, $event)">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-md-7">
+          <h3>Избери картинка</h3>
+          <button type="button" mat-raised-button (click)="fileInput.click()"> <mat-icon>attachment</mat-icon> Качи файл</button>
+          <span *ngIf="selectedImage" class="mat-active">
         Избран файл: {{selectedImage}}
       </span>
-      <input hidden (change)="onFileSelect($event)" #fileInput type="file" id="file">
-      <button mat-raised-button color="primary" class="add-product-button text-white" (click)="addProduct()"> <mat-icon>add</mat-icon> Добави</button>
+          <input hidden (change)="onFileSelect($event)" #fileInput type="file" id="file">
+          <button mat-raised-button color="primary" class="add-product-button text-white" (click)="addProduct()"> <mat-icon>add</mat-icon> Добави</button>
+        </div>
+      </div>
     </form>
   </mat-card-content>
 </mat-card>

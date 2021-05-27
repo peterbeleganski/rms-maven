@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {AppSettings} from '../../../global/app.settings';
+import {ThemePalette} from "@angular/material/core";
+import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-create-restaurant',
@@ -17,6 +19,13 @@ export class CreateRestaurantComponent implements OnInit {
   fileData: File = null;
   selectedCoverImage: string;
   selectedLogoImage: string;
+
+  color: ThemePalette = 'accent';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  progressSpinnerValue = 30;
+
+  spinner: boolean = false;
+
   constructor(private restaurantService: RestaurantService,
               private formBuilder: FormBuilder,
               private toastrService: ToastrService,
@@ -47,31 +56,33 @@ export class CreateRestaurantComponent implements OnInit {
   }
 
   addRestaurant() {
+    this.spinner = true;
     this.restaurant = {
       name: this.name.value,
       location: this.location.value
     };
 
-    this.restaurantService.addRestaurant(this.restaurant)
-      .then(res => {
-        const formData = new FormData();
-        const currentRestaurantId = res.body.id;
+    this.restaurantService.addRestaurant(this.restaurant).then(response => {
+        let formData = new FormData();
+        const currentRestaurantId = response.body.id;
+
+        const promises = [];
         formData.append('file', this.form.get('coverImage').value);
-        this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'coverImage')
-          .then(response => {
-            const formData = new FormData();
-            formData.append('file', this.form.get('logoImage').value);
-            return this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'logoImage')
-          })
-          .then(response => {
-            if (response.status === 200) {
-              this.toastrService.success('Успешно добавен ресторант');
-              this.setEmptyValuesForFormGroup(this.form);
-            } else {
-              this.toastrService.warning('Възникна проблем при създаването на ресторанта');
-            }
+        promises.push(this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'coverImage'));
+
+        formData = new FormData();
+        formData.append('file', this.form.get('logoImage').value);
+        promises.push(this.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'logoImage'));
+
+        Promise.all(promises).then(() => {
+            this.spinner = false;
+            this.toastrService.success('Успешно добавен ресторант');
+            this.router.navigateByUrl('/restaurants');
         });
-    }).catch(err => {AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
+    }).catch(err => {
+      this.spinner = false;
+      AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router);
+    });
   }
 
   get name() {

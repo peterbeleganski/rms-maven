@@ -24,7 +24,7 @@ export class ListRestaurantsComponent implements OnInit {
   private totalElements: number;
   color: ThemePalette = 'accent';
   mode: ProgressSpinnerMode = 'indeterminate';
-  value = 30;
+  progressSpinnerValue = 30;
 
   constructor(private restaurantService: RestaurantService,
               private toastrService: ToastrService,
@@ -37,10 +37,10 @@ export class ListRestaurantsComponent implements OnInit {
   }
 
   // fetch all restaurants for ADMIN role and only owner's restaurant if the user is owner
-  private async fetchRestaurants(paginationObject): Promise<void> {
+  async fetchRestaurants(paginationObject): Promise<void> {
     this.user = this.authenticationService.getSecurityObject();
 
-    if (this.user.authorities && this.user.authorities.includes('OWNER')) {
+    if (!this.isAdmin()) {
       await this.requestRestaurants(paginationObject, this.user.username);
     } else {
       await this.requestRestaurants(paginationObject);
@@ -67,9 +67,6 @@ export class ListRestaurantsComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
-        const a = document.createElement('a');
-        a.click();
-        a.remove();
         this.restaurantService.deleteRestaurant(restaurant.id).then(response => {
           if (response.status === 200) {
             this.toastrService.success('Успешно изтрихте ресторанта!');

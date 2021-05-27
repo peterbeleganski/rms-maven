@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import { RestaurantListModel } from '../../../models/restaurant-list.model';
 import {ToastrService} from 'ngx-toastr';
 import {AppSettings} from '../../../global/app.settings';
+import {ThemePalette} from "@angular/material/core";
+import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-edit-restaurant',
@@ -20,6 +22,13 @@ export class EditRestaurantComponent implements OnInit {
   isSelectedNewCover: boolean;
   selectedCoverImage: string;
   selectedLogoImage: string;
+
+  color: ThemePalette = 'accent';
+  mode: ProgressSpinnerMode = 'indeterminate';
+  progressSpinnerValue = 30;
+
+  spinner: boolean = false;
+
   constructor(private formBuilder: FormBuilder,
               private activeRoute: ActivatedRoute,
               private restaurantService: RestaurantService,
@@ -48,6 +57,7 @@ export class EditRestaurantComponent implements OnInit {
   }
 
   async editRestaurant(restaurantId: string) {
+    this.spinner = true;
     this.restaurant.name = this.form.get('name').value;
     this.restaurant.location = this.form.get('location').value;
     this.restaurant.active = this.form.get("active").value === "active";
@@ -68,8 +78,12 @@ export class EditRestaurantComponent implements OnInit {
         Promise.all(promises).then(() => {
           this.router.navigateByUrl('/restaurants');
           this.toastrService.success('Успешно редактирахте ресторанта');
+          this.spinner = false;
         });
-    }).catch(err => {AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
+    }).catch(err => {
+      this.spinner = false;
+      AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router);
+    });
   }
 
   onFileSelect(event, imageType) {

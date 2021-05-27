@@ -1,9 +1,18 @@
 mat-card {
-  max-width: 800px;
+  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
 
 mat-form-field {
   display: block;
+}
+
+.loading-spinner {
+  position: relative;
+  left: 46%;
+}
+
+.edit-restaurant-images img{
+  margin-bottom: 10px;
 }

@@ -67,7 +67,7 @@ export class CreateProductComponent implements OnInit {
       allergens: this.allergens.value && this.allergens.value.split(','),
       tags: this.tags.value && this.tags.value.split(','),
       category: this.category.value,
-      menus: this.selectedMenu.value,
+      menus: this.selectedMenu.value || [''],
       restaurantId: this.selectedRestaurant.value
     };
     this.selectedMenuId = this.selectedMenu.value || ['default'];
@@ -79,8 +79,7 @@ export class CreateProductComponent implements OnInit {
         this.productService.addImageToProduct(res.body.id, formData)
           .then(() => {
             this.toastrService.success('Успешно добавихте продукта');
-          })
-          .catch(err => {AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
+          });
       }).catch(err => {AppSettings.redirectAndRequireToLogin(err.status, this.toastrService, this.router); });
   }
 
@@ -113,6 +112,10 @@ export class CreateProductComponent implements OnInit {
   addNewCategory(selectedRestaurantId: string, event: Event) {
     event.stopPropagation();
     event.preventDefault();
+    if (!this.selectedRestaurant?.value) {
+      this.toastrService.warning('Моля изберете ресторант първо!');
+      return;
+    }
 
     this.dialog.open(CreateNewCategoryDialogComponent, {
       data: {

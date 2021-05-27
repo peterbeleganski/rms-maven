@@ -8,7 +8,6 @@
 }
 
 mat-card {
-  width: 28%;
   display: inline-block;
 }
 
@@ -37,4 +36,12 @@ mat-card-header img {
 .loading-spinner {
   position: relative;
   left: 50%;
+}
+
+#restaurant-logo {
+  position: absolute;
+  vertical-align: bottom;
+  top: 248px;
+  border-radius: 16px;
+  border: 2px solid whitesmoke;
 }

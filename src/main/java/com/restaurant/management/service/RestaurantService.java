@@ -108,8 +108,6 @@ public class RestaurantService extends DefaultCrudService<Restaurant> {
         Update update = new Update();
         update.set("name", entity.getName());
         update.set("location", entity.getLocation());
-        update.set("image", entity.getImage());
-        update.set("contentType", entity.getContentType());
         update.set("active", entity.isActive());
         return ObjectMapperUtils.map(
                 mongoTemplate.findAndModify(Query.query(Criteria.where("_id").is(restaurantId)), update, Restaurant.class),
