@@ -4,7 +4,7 @@
       <h2>{{getSecurityObject().username}}</h2>
       <h4>Роля: {{ getRepresentationTextForRoles(getSecurityObject().authorities) }}</h4>
     </div>
-    <img src="https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png" alt="profile-icon">
+    <img src="assets/images/logo.png" alt="logo">
   </div>
 
   <mat-divider></mat-divider>
@@ -50,17 +50,7 @@
       <mat-icon>supervisor_account</mat-icon>Всички потребители</a>
   </div>
 
-  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/my-profile">
-      <mat-icon>edit</mat-icon>Редактирай профила си</a>
-  </div>
-
   <mat-divider></mat-divider>
-
-  <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
-    <a mat-list-item routerLinkActive="list-item-active" (click)="logout()">
-      <mat-icon>settings</mat-icon>Настройки</a>
-  </div>
 
   <div *ngIf="isAuthenticatedForRole('ADMIN,OWNER')">
     <a mat-list-item routerLinkActive="list-item-active" (click)="logout()">

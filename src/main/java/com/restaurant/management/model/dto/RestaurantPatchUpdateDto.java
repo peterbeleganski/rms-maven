@@ -9,9 +9,5 @@ public class RestaurantPatchUpdateDto {
 
     private String location;
 
-    private byte[] image;
-
-    private String contentType;
-
     private boolean active;
 }

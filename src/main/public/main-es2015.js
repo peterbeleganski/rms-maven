@@ -972,7 +972,7 @@ let EditProductComponent = class EditProductComponent {
         this.product = { title: '' };
         this.color = 'accent';
         this.mode = 'indeterminate';
-        this.value = 30;
+        this.progressSpinnerValue = 30;
         this.fetchedProduct = false;
         this.form = formBuilder.group({
             title: [],
@@ -1270,7 +1270,7 @@ let ProductListComponent = class ProductListComponent {
         this.columnsToDisplay = ['title', 'price', 'allergens', 'tags', 'category', 'menus', 'edit', 'delete'];
         this.color = 'accent';
         this.mode = 'indeterminate';
-        this.value = 30;
+        this.progressSpinnerValue = 30;
     }
     ngOnInit() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {
@@ -1695,7 +1695,7 @@ let ListRestaurantsComponent = class ListRestaurantsComponent {
         this.size = 6;
         this.color = 'accent';
         this.mode = 'indeterminate';
-        this.value = 30;
+        this.progressSpinnerValue = 30;
     }
     ngOnInit() {
         return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, function* () {

@@ -105,9 +105,6 @@ public class ProductService extends DefaultCrudService<Product> {
 
     public List<Product> findAllByIds(List<String> ids) {
         Query query = new Query();
-        query.fields().exclude("image");
-        query.fields().exclude("contentType");
-
         query.addCriteria(Criteria.where("_id").in(ids));
 
         return mongoTemplate.find(query, Product.class);

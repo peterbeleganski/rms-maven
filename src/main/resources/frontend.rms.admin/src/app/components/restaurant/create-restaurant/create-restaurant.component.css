@@ -1,5 +1,5 @@
 mat-card {
-  max-width: 500px;
+  max-width: 80%;
   margin: 0 auto;
   text-align: center;
 }
@@ -10,4 +10,11 @@ mat-form-field {
 
 .add-restaurant-button {
   margin-left: 10px;
+}
+
+.loading-spinner {
+  position: relative;
+  left: 42%;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }

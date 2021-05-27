@@ -1717,7 +1717,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         };
         this.color = 'accent';
         this.mode = 'indeterminate';
-        this.value = 30;
+        this.progressSpinnerValue = 30;
         this.fetchedProduct = false;
         this.form = formBuilder.group({
           title: [],
@@ -2276,7 +2276,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.columnsToDisplay = ['title', 'price', 'allergens', 'tags', 'category', 'menus', 'edit', 'delete'];
         this.color = 'accent';
         this.mode = 'indeterminate';
-        this.value = 30;
+        this.progressSpinnerValue = 30;
       }
 
       _createClass(ProductListComponent, [{
@@ -3060,7 +3060,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.size = 6;
         this.color = 'accent';
         this.mode = 'indeterminate';
-        this.value = 30;
+        this.progressSpinnerValue = 30;
       }
 
       _createClass(ListRestaurantsComponent, [{

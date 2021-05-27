@@ -2,14 +2,7 @@
 <mat-card>
   <mat-card-content>
     <div class="row">
-      <div class="col-md-4">
-        <h2>Корица на ресторанта</h2>
-        <img mat-card-xl-image src="{{restaurant.coverImageUrl}}" alt="cover image">
-
-        <h2>Лого на ресторанта</h2>
-        <img mat-card-xl-image src="{{restaurant.logoImageUrl}}" alt="logo image">
-      </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <form [formGroup]="form">
           <mat-form-field class="full-width-input">
             <input matInput placeholder="Име на ресторант" formControlName="name" required>
@@ -51,10 +44,32 @@
             </div>
           </div>
           <br>
-          <div class="row"></div>
-          <button mat-raised-button color="primary" class="edit-restaurant-button text-white" (click)="editRestaurant(restaurant.id)"> <mat-icon>save</mat-icon> Запази</button>
+          <div class="row">
+            <div class="col-md-6 edit-restaurant-images">
+              <h2>Корица на ресторанта</h2>
+              <img mat-card-xl-image src="{{restaurant.coverImageUrl}}" alt="cover image">
+            </div>
+            <div class="col-md-6">
+              <h2>Лого на ресторанта</h2>
+              <img mat-card-xl-image src="{{restaurant.logoImageUrl}}" alt="logo image">
+            </div>
+          </div>
+          <br>
+          <div class="loading-spinner" *ngIf="spinner">
+            <mat-progress-spinner
+              class="example-margin"
+              [color]="color"
+              [mode]="mode"
+              [value]="progressSpinnerValue">
+            </mat-progress-spinner>
+          </div>
+          <br>
+          <button mat-raised-button color="primary" [disabled]="spinner" class="edit-restaurant-button text-white" (click)="editRestaurant(restaurant.id)"> <mat-icon>save</mat-icon> Запази</button>
         </form>
       </div>
+    </div>
+    <div class="row">
+      <br>
     </div>
   </mat-card-content>
 </mat-card>

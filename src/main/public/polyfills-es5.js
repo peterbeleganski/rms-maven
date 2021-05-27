@@ -15497,7 +15497,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               // When a yielded Promise is resolved, its final value becomes
               // the .value of the Promise<{value,done}> result for the
               // current iteration.
-              result.value = unwrapped;
+              result.progressSpinnerValue = unwrapped;
               resolve(result);
             }, function (error) {
               // If a rejected Promise was yielded, throw the rejection back
@@ -15809,13 +15809,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 next = function next() {
               while (++i < iterable.length) {
                 if (hasOwn.call(iterable, i)) {
-                  next.value = iterable[i];
+                  next.progressSpinnerValue = iterable[i];
                   next.done = false;
                   return next;
                 }
               }
 
-              next.value = undefined;
+              next.progressSpinnerValue = undefined;
               next.done = true;
               return next;
             };

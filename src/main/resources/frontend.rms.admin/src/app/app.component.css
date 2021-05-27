@@ -22,3 +22,8 @@ mat-drawer-content {
 ul li {
   list-style: none;
 }
+
+.loading-spinner {
+  position: relative;
+  left: 50%;
+}

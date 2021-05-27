@@ -10,7 +10,7 @@
       class="example-margin"
       [color]="color"
       [mode]="mode"
-      [value]="value">
+      [value]="progressSpinnerValue">
     </mat-progress-spinner>
   </div>
 </div>
@@ -40,7 +40,8 @@
       <mat-card-subtitle>{{restaurant.location}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content class="text-center">
-      <img mat-card-xl-image src="{{restaurant.coverImageUrl}}" alt="Restaurant photo">
+      <img id="restaurant-logo" mat-card-sm-image src="{{restaurant.logoImageUrl}}" alt="Restaurant logo">
+      <img mat-card-xl-image src="{{restaurant.coverImageUrl}}" alt="Restaurant cover">
     </mat-card-content>
   </mat-card>
 
