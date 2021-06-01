@@ -20,4 +20,8 @@ export class CategoryService {
     // tslint:disable-next-line:max-line-length
     return this.httpClient.post<CategoryModel>(`${AppSettings.API_ENDPOINT}/api/category/create?restaurantId=${restaurantId}`, category).toPromise();
   }
+
+  updateCategories(restaurantId: string, categories: CategoryModel[]): Promise<CategoryModel[]> {
+    return this.httpClient.put<CategoryModel[]>(`${AppSettings.API_ENDPOINT}/api/category?restaurantId=${restaurantId}`, categories).toPromise();
+  }
 }

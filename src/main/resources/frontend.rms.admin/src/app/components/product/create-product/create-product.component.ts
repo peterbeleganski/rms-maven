@@ -94,6 +94,7 @@ export class CreateProductComponent implements OnInit {
 
   async onSelectRestaurant() {
     const restaurantId = this.selectedRestaurant.value;
+    this.selectedRestaurantId = restaurantId;
     this.restaurantService.getById(restaurantId).then(selectedRestaurantResponse => {
       this.menus = (selectedRestaurantResponse).body.menus || ['default'];
       this.categories = selectedRestaurantResponse.body.categories;
@@ -119,16 +120,16 @@ export class CreateProductComponent implements OnInit {
 
     this.dialog.open(CreateNewCategoryDialogComponent, {
       data: {
-        restaurantId: this.selectedRestaurant.value
+        restaurantId: this.selectedRestaurantId
       },
       height: '240px',
       width: '450px',
     });
 
     this.dialog.afterAllClosed.subscribe(result => {
-      this.categoryService.getAllCategoriesByRestaurantId(this.selectedRestaurant.value).then(categories => {
+      this.categoryService.getAllCategoriesByRestaurantId(this.selectedRestaurantId).then(categories => {
         this.categories = categories;
-        if (this.categories.length !== 0) {
+        if (this.categories.length === 1) {
           this.addedCategory = this.categories[this.categories.length - 1];
           this.category.setValue(this.addedCategory);
         }

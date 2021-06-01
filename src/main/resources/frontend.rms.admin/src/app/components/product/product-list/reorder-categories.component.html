@@ -1,0 +1,10 @@
+<mat-dialog-content>
+ <h2>Подреди категориите</h2>
+  <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let category of categories" cdkDrag>{{category.title}}</div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button class="text-white" mat-raised-button color="primary"  tabindex="1" (click)="onConfirmClick()">Запази</button>
+  <button mat-raised-button mat-dialog-close tabindex="-1">Отказ</button>
+</mat-dialog-actions>

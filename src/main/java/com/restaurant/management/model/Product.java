@@ -39,8 +39,6 @@ public class Product extends BaseObject {
 
     private String imageBlobUrl;
 
-    private String contentType;
-
     private List<String> tags;
 
     private List<String> menus;

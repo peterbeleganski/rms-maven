@@ -12,6 +12,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MatTableDataSource} from '@angular/material/table';
 import {ThemePalette} from '@angular/material/core';
 import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import {ReorderCategoriesComponent, ReorderCategoriesPayload} from "./reorder-categories.component";
+import {CategoryService} from "../../../services/category.service";
 
 @Component({
   selector: 'app-menu-detail',
@@ -41,7 +43,8 @@ export class ProductListComponent implements OnInit {
               private activeRoute: ActivatedRoute,
               private toastrService: ToastrService,
               private router: Router,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private categoryService: CategoryService) { }
 
   async ngOnInit() {
     await this.fetchProducts();
@@ -95,5 +98,23 @@ export class ProductListComponent implements OnInit {
 
   goToEditProduct(restaurantId: string, productId: string) {
     this.router.navigateByUrl(`/restaurants/${restaurantId}/products/${productId}/edit`);
+  }
+
+  openReorderCategoriesDialog() {
+    const dialog = this.dialog.open(ReorderCategoriesComponent, {
+      data: new ReorderCategoriesPayload(this.restaurant.categories)
+    });
+
+    return dialog.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        const updatedCategories = dialog.componentInstance.categories;
+        this.categoryService.updateCategories(this.restaurant.id, updatedCategories)
+          .then(() => {
+            return this.fetchProducts().then(() => {
+              this.toastrService.success('Успешно обновихте категориите!');
+            });
+          })
+      }
+    });
   }
 }

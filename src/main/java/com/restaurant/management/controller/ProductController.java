@@ -67,7 +67,7 @@ public class ProductController extends CrudController<Product> {
     }
 
     @PostMapping("/{restaurantId}/import-products")
-    public HttpEntity importProducts(@PathVariable String restaurantId, @RequestParam MultipartFile importFile) {
+    public HttpEntity<Integer> importProducts(@PathVariable String restaurantId, @RequestParam MultipartFile importFile) {
         int importedProductsCount = productService.importProducts(restaurantId, importFile);
         return ResponseEntity.ok(importedProductsCount);
     }
