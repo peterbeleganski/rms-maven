@@ -893,7 +893,6 @@ let CreateProductComponent = class CreateProductComponent {
             width: '450px',
         });
         this.dialog.afterAllClosed.subscribe(result => {
-            console.log(result);
             this.categoryService.getAllCategoriesByRestaurantId(this.selectedRestaurantId).then(categories => {
                 this.categories = categories;
                 if (this.categories.length === 1) {
@@ -2208,7 +2207,7 @@ class AppSettings {
         return representationRoles;
     }
 }
-AppSettings.API_ENDPOINT = 'https://meniuto-portal-dev.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
 
 /***/ }),

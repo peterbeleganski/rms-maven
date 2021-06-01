@@ -87,8 +87,15 @@ public class RestaurantService extends DefaultCrudService<Restaurant> {
 
     public RestaurantResponse getRestaurantDetails(String restaurantId) {
         Restaurant restaurant = crudRepository.findById(restaurantId).orElseThrow();
-        restaurant.getCategories().sort(Comparator.comparingInt(Category::getPriority));
-        return ObjectMapperUtils.map(restaurant, RestaurantResponse.class);
+
+        RestaurantResponse restaurantResponse = ObjectMapperUtils.map(restaurant, RestaurantResponse.class);
+
+        List<Category> categories = restaurantResponse.getCategories();
+        categories.sort(Comparator.comparingInt(Category::getPriority));
+
+        restaurantResponse.setCategories(categories);
+
+        return restaurantResponse;
     }
 
     public String getRestaurantNameById(String restaurantId) {

@@ -1568,8 +1568,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
             width: '450px'
           });
           this.dialog.afterAllClosed.subscribe(function (result) {
-            console.log(result);
-
             _this4.categoryService.getAllCategoriesByRestaurantId(_this4.selectedRestaurantId).then(function (categories) {
               _this4.categories = categories;
 
@@ -4037,7 +4035,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       return AppSettings;
     }();
 
-    AppSettings.API_ENDPOINT = 'https://meniuto-portal-dev.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+    AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
     /***/
   },
