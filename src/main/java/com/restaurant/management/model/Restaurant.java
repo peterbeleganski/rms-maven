@@ -51,6 +51,8 @@ public class Restaurant extends BaseObject {
 
     private boolean active;
 
+    private String workingHours;
+
     public List<Category> getCategories() {
         categories.sort(Comparator.comparingInt(Category::getPriority));
         return categories;

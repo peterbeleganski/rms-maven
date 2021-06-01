@@ -271,7 +271,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-5\">\n        <form [formGroup]=\"form\">\n          <h2>Добави ресторант</h2>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <button [disabled]=\"spinner\" mat-raised-button color=\"primary\" class=\"add-restaurant-button text-white\" (click)=\"addRestaurant()\">\n            <mat-icon>add</mat-icon> <span>Добави</span>\n          </button>\n        </form>\n      </div>\n      <div class=\"col-md-7\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <h3>Избери картинка за корицата</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputCover.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedCoverImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCover type=\"file\" id=\"file\">\n          </div>\n          <div class=\"col-md-6\">\n            <h3>Избери лого на ресторанта</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputLogo.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedLogoImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogo type=\"file\" id=\"file2\">\n          </div>\n        </div>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
+    __webpack_exports__["default"] = "<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-5\">\n        <form [formGroup]=\"form\">\n          <h2>Добави ресторант</h2>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n         <div class=\"row\">\n           <div class=\"col-md-6\">\n             <mat-form-field class=\"full-width-input\">\n               <input type=\"time\" matInput placeholder=\"От\" formControlName=\"workingHoursStart\" required>\n               <mat-error>\n                 Моля въведете работно време на ресторанта\n               </mat-error>\n             </mat-form-field>\n           </div>\n           <div class=\"col-md-6\">\n             <mat-form-field class=\"full-width-input\">\n               <input type=\"time\" matInput placeholder=\"До\" formControlName=\"workingHoursEnd\" required>\n               <mat-error>\n                 Моля въведете работно време на ресторанта\n               </mat-error>\n             </mat-form-field>\n           </div>\n         </div>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <button [disabled]=\"spinner\" mat-raised-button color=\"primary\" class=\"add-restaurant-button text-white\" (click)=\"addRestaurant()\">\n            <mat-icon>add</mat-icon> <span>Добави</span>\n          </button>\n        </form>\n      </div>\n      <div class=\"col-md-7\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <h3>Избери картинка за корицата</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputCover.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedCoverImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCover type=\"file\" id=\"file\">\n          </div>\n          <div class=\"col-md-6\">\n            <h3>Избери лого на ресторанта</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputLogo.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedLogoImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogo type=\"file\" id=\"file2\">\n          </div>\n        </div>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
     /***/
   },
 
@@ -291,7 +291,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h2 class=\"text-center\">Редактирате ресторант: {{restaurant.name}}</h2>\n<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <mat-label>Статус на ресторант</mat-label>\n            <mat-select id=\"restaurant-status\" formControlName=\"active\">\n              <mat-option value=\"inactive\">неактивен</mat-option>\n              <mat-option value=\"active\">активен</mat-option>\n            </mat-select>\n          </mat-form-field>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <h3>Избери корица на ресторанта</h3>\n                <button type=\"button\" mat-raised-button (click)=\"fileInputCoverImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n                  Избран файл: {{selectedCoverImage}}\n                </span>\n                <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCoverImage type=\"file\" id=\"file-cover\">\n            </div>\n            <div class=\"col-md-6\">\n              <h3>Избери лого на ресторанта</h3>\n              <button type=\"button\" mat-raised-button (click)=\"fileInputLogoImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n                Избран файл: {{selectedLogoImage}}\n              </span>\n              <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogoImage type=\"file\" id=\"file-logo\">\n            </div>\n          </div>\n          <br>\n          <div class=\"row\">\n            <div class=\"col-md-6 edit-restaurant-images\">\n              <h2>Корица на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.coverImageUrl}}\" alt=\"cover image\">\n            </div>\n            <div class=\"col-md-6\">\n              <h2>Лого на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.logoImageUrl}}\" alt=\"logo image\">\n            </div>\n          </div>\n          <br>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <br>\n          <button mat-raised-button color=\"primary\" [disabled]=\"spinner\" class=\"edit-restaurant-button text-white\" (click)=\"editRestaurant(restaurant.id)\"> <mat-icon>save</mat-icon> Запази</button>\n        </form>\n      </div>\n    </div>\n    <div class=\"row\">\n      <br>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
+    __webpack_exports__["default"] = "<h2 class=\"text-center\">Редактирате ресторант: {{restaurant.name}}</h2>\n<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <mat-label>Статус на ресторант</mat-label>\n            <mat-select id=\"restaurant-status\" formControlName=\"active\">\n              <mat-option value=\"inactive\">неактивен</mat-option>\n              <mat-option value=\"active\">активен</mat-option>\n            </mat-select>\n          </mat-form-field>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <h3>Избери корица на ресторанта</h3>\n                <button type=\"button\" mat-raised-button (click)=\"fileInputCoverImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n                  Избран файл: {{selectedCoverImage}}\n                </span>\n                <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCoverImage type=\"file\" id=\"file-cover\">\n            </div>\n            <div class=\"col-md-6\">\n              <h3>Избери лого на ресторанта</h3>\n              <button type=\"button\" mat-raised-button (click)=\"fileInputLogoImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n                Избран файл: {{selectedLogoImage}}\n              </span>\n              <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogoImage type=\"file\" id=\"file-logo\">\n            </div>\n          </div>\n          <br>\n          <div class=\"row\">\n            <div class=\"col-md-6 edit-restaurant-images\">\n              <h2>Корица на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.coverImageUrl}}\" alt=\"cover image\">\n            </div>\n            <div class=\"col-md-6\">\n              <h2>Лого на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.logoImageUrl}}\" alt=\"logo image\">\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <mat-form-field class=\"full-width-input\">\n                <input type=\"time\" matInput placeholder=\"От\" formControlName=\"workingHoursStart\" required>\n                <mat-error>\n                  Моля въведете работно време на ресторанта\n                </mat-error>\n              </mat-form-field>\n            </div>\n            <div class=\"col-md-6\">\n              <mat-form-field class=\"full-width-input\">\n                <input type=\"time\" matInput placeholder=\"До\" formControlName=\"workingHoursEnd\" required>\n                <mat-error>\n                  Моля въведете работно време на ресторанта\n                </mat-error>\n              </mat-form-field>\n            </div>\n          </div>\n          <br>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <br>\n          <button mat-raised-button color=\"primary\" [disabled]=\"spinner\" class=\"edit-restaurant-button text-white\" (click)=\"editRestaurant(restaurant.id)\"> <mat-icon>save</mat-icon> Запази</button>\n        </form>\n      </div>\n    </div>\n    <div class=\"row\">\n      <br>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
     /***/
   },
 
@@ -2763,7 +2763,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           name: [],
           location: [],
           coverImage: [''],
-          logoImage: ['']
+          logoImage: [''],
+          workingHoursStart: [''],
+          workingHoursEnd: ['']
         });
       }
 
@@ -2772,6 +2774,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function ngOnInit() {
           this.restaurant.name = '';
           this.restaurant.location = '';
+          this.restaurant.workingHours = '';
         }
       }, {
         key: "onFileSelect",
@@ -2798,7 +2801,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.spinner = true;
           this.restaurant = {
             name: this.name.value,
-            location: this.location.value
+            location: this.location.value,
+            workingHours: this.workingHours
           };
           this.restaurantService.addRestaurant(this.restaurant).then(function (response) {
             var formData = new FormData();
@@ -2831,6 +2835,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "location",
         get: function get() {
           return this.form.get('location');
+        }
+      }, {
+        key: "workingHours",
+        get: function get() {
+          return this.form.get('workingHoursStart').value + ' - ' + this.form.get('workingHoursEnd').value;
         }
       }, {
         key: "setEmptyValuesForFormGroup",
@@ -2980,7 +2989,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           image: [],
           logoImage: [],
           coverImage: [],
-          active: []
+          active: [],
+          workingHoursStart: [''],
+          workingHoursEnd: ['']
         });
       }
 
@@ -2996,16 +3007,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     return this.fetchRestaurants();
 
                   case 2:
+                    console.log(this.restaurant.workingHours.split('-')[0]);
                     this.form = this.formBuilder.group({
                       name: this.restaurant.name,
                       location: this.restaurant.location,
                       image: this.restaurant.image,
                       logoImage: this.restaurant.logoImageUrl,
                       coverImage: this.restaurant.coverImageUrl,
-                      active: this.restaurant.active ? "active" : "inactive"
+                      active: this.restaurant.active ? "active" : "inactive",
+                      workingHoursStart: this.restaurant.workingHours.split(' - ')[0],
+                      workingHoursEnd: this.restaurant.workingHours.split(' - ')[1]
                     });
 
-                  case 3:
+                  case 4:
                   case "end":
                     return _context15.stop();
                 }
@@ -3027,6 +3041,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     this.restaurant.name = this.form.get('name').value;
                     this.restaurant.location = this.form.get('location').value;
                     this.restaurant.active = this.form.get("active").value === "active";
+                    this.restaurant.workingHours = this.form.get("workingHoursStart").value + ' - ' + this.form.get('workingHoursEnd').value;
                     this.restaurantService.patchUpdateRestaurant(restaurantId, this.restaurant).then(function (response) {
                       var promises = [];
 
@@ -3057,7 +3072,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                       _global_app_settings__WEBPACK_IMPORTED_MODULE_6__["AppSettings"].redirectAndRequireToLogin(err.status, _this11.toastrService, _this11.router);
                     });
 
-                  case 5:
+                  case 6:
                   case "end":
                     return _context16.stop();
                 }

@@ -34,13 +34,16 @@ export class CreateRestaurantComponent implements OnInit {
         name: [],
         location: [],
         coverImage: [''],
-        logoImage: ['']
+        logoImage: [''],
+        workingHoursStart: [''],
+        workingHoursEnd: ['']
     });
   }
 
   ngOnInit() {
     this.restaurant.name = '';
     this.restaurant.location = '';
+    this.restaurant.workingHours = '';
   }
 
   onFileSelect(event, imageType) {
@@ -59,7 +62,8 @@ export class CreateRestaurantComponent implements OnInit {
     this.spinner = true;
     this.restaurant = {
       name: this.name.value,
-      location: this.location.value
+      location: this.location.value,
+      workingHours: this.workingHours
     };
 
     this.restaurantService.addRestaurant(this.restaurant).then(response => {
@@ -91,6 +95,10 @@ export class CreateRestaurantComponent implements OnInit {
 
   get location() {
     return this.form.get('location');
+  }
+
+  get workingHours() {
+    return this.form.get('workingHoursStart').value + ' - ' + this.form.get('workingHoursEnd').value;
   }
 
   private setEmptyValuesForFormGroup(formGroup: FormGroup) {

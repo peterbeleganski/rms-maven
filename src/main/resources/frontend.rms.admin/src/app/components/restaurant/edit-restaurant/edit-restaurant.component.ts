@@ -40,19 +40,24 @@ export class EditRestaurantComponent implements OnInit {
       image: [],
       logoImage: [],
       coverImage: [],
-      active: []
+      active: [],
+      workingHoursStart: [''],
+      workingHoursEnd: ['']
     });
   }
 
   async ngOnInit() {
     await this.fetchRestaurants();
+    console.log(this.restaurant.workingHours.split('-')[0]);
     this.form = this.formBuilder.group({
       name: this.restaurant.name,
       location: this.restaurant.location,
       image: this.restaurant.image,
       logoImage: this.restaurant.logoImageUrl,
       coverImage: this.restaurant.coverImageUrl,
-      active: this.restaurant.active ? "active" : "inactive"
+      active: this.restaurant.active ? "active" : "inactive",
+      workingHoursStart: this.restaurant.workingHours.split(' - ')[0],
+      workingHoursEnd: this.restaurant.workingHours.split(' - ')[1]
     });
   }
 
@@ -61,6 +66,8 @@ export class EditRestaurantComponent implements OnInit {
     this.restaurant.name = this.form.get('name').value;
     this.restaurant.location = this.form.get('location').value;
     this.restaurant.active = this.form.get("active").value === "active";
+    this.restaurant.workingHours = this.form.get("workingHoursStart").value + ' - ' + this.form.get('workingHoursEnd').value;
+
     this.restaurantService.patchUpdateRestaurant(restaurantId, this.restaurant)
       .then(response => {
         const promises = [];
