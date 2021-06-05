@@ -14,4 +14,5 @@ export interface RestaurantListModel {
   waiters?: SecurityObjectModel[];
   categories?: CategoryModel[];
   active?: boolean;
+  workingHours?: string;
 }

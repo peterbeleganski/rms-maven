@@ -54,6 +54,24 @@
               <img mat-card-xl-image src="{{restaurant.logoImageUrl}}" alt="logo image">
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field class="full-width-input">
+                <input type="time" matInput placeholder="От" formControlName="workingHoursStart" required>
+                <mat-error>
+                  Моля въведете работно време на ресторанта
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field class="full-width-input">
+                <input type="time" matInput placeholder="До" formControlName="workingHoursEnd" required>
+                <mat-error>
+                  Моля въведете работно време на ресторанта
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
           <br>
           <div class="loading-spinner" *ngIf="spinner">
             <mat-progress-spinner

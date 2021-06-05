@@ -10,4 +10,6 @@ public class RestaurantPatchUpdateDto {
     private String location;
 
     private boolean active;
+
+    private String workingHours;
 }

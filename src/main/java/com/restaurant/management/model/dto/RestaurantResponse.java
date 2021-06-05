@@ -26,4 +26,6 @@ public class RestaurantResponse {
     private List<Category> categories;
 
     private boolean active;
+
+    private String workingHours;
 }

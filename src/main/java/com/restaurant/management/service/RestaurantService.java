@@ -2,10 +2,7 @@ package com.restaurant.management.service;
 
 import com.restaurant.management.controller.AzureStorage;
 import com.restaurant.management.exception.EntityNotFoundException;
-import com.restaurant.management.model.Order;
-import com.restaurant.management.model.Product;
-import com.restaurant.management.model.Restaurant;
-import com.restaurant.management.model.User;
+import com.restaurant.management.model.*;
 import com.restaurant.management.model.dto.ListRestaurantNamesDto;
 import com.restaurant.management.model.dto.RestaurantPatchUpdateDto;
 import com.restaurant.management.model.dto.RestaurantResponse;
@@ -27,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -88,7 +86,16 @@ public class RestaurantService extends DefaultCrudService<Restaurant> {
     }
 
     public RestaurantResponse getRestaurantDetails(String restaurantId) {
-        return ObjectMapperUtils.map(crudRepository.findById(restaurantId).orElseThrow(), RestaurantResponse.class);
+        Restaurant restaurant = crudRepository.findById(restaurantId).orElseThrow();
+
+        RestaurantResponse restaurantResponse = ObjectMapperUtils.map(restaurant, RestaurantResponse.class);
+
+        List<Category> categories = restaurantResponse.getCategories();
+        categories.sort(Comparator.comparingInt(Category::getPriority));
+
+        restaurantResponse.setCategories(categories);
+
+        return restaurantResponse;
     }
 
     public String getRestaurantNameById(String restaurantId) {
@@ -109,6 +116,7 @@ public class RestaurantService extends DefaultCrudService<Restaurant> {
         update.set("name", entity.getName());
         update.set("location", entity.getLocation());
         update.set("active", entity.isActive());
+        update.set("workingHours", entity.getWorkingHours());
         return ObjectMapperUtils.map(
                 mongoTemplate.findAndModify(Query.query(Criteria.where("_id").is(restaurantId)), update, Restaurant.class),
                 RestaurantPatchUpdateDto.class);

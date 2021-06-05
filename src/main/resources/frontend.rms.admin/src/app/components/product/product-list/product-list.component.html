@@ -2,10 +2,19 @@
 <div class="text-center border-bottom">
   <h2>Продукти от ресторант: <u>{{restaurant?.name}}</u></h2>
 </div>
-<mat-form-field>
-  <mat-label>Търсете продукт</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Търсете продукт">
-</mat-form-field>
+<div class="row">
+  <div class="col-md-6">
+    <mat-form-field>
+      <mat-label>Търсете продукт</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Търсете продукт">
+    </mat-form-field>
+  </div>
+  <div class="col-md-6 reorder-button">
+    <button mat-raised-button (click)="openReorderCategoriesDialog()">
+      <mat-icon color="accent">reorder</mat-icon><span>Подреди категориите</span>
+    </button>
+  </div>
+</div>
 <div class="alert alert-danger" *ngIf="products && products.length === 0">
   Все още няма продукти за този ресторант
 </div>

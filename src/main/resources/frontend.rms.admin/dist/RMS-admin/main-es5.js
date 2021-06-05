@@ -231,7 +231,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<br>\n<div class=\"text-center border-bottom\">\n  <h2>Продукти от ресторант: <u>{{restaurant?.name}}</u></h2>\n</div>\n<mat-form-field>\n  <mat-label>Търсете продукт</mat-label>\n  <input matInput (keyup)=\"applyFilter($event)\" placeholder=\"Търсете продукт\">\n</mat-form-field>\n<div class=\"alert alert-danger\" *ngIf=\"products && products.length === 0\">\n  Все още няма продукти за този ресторант\n</div>\n<div class=\"loading-spinner\" *ngIf=\"!products\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n<table *ngIf=\"products\" mat-table\n       [dataSource]=\"dataSource\" multiTemplateDataRows\n       class=\"mat-elevation-z8\">\n  <ng-container matColumnDef=\"{{column}}\" *ngFor=\"let column of columnsToDisplay\">\n    <th mat-header-cell *matHeaderCellDef> {{column}} </th>\n    <td mat-cell *matCellDef=\"let element\">\n      <span *ngIf=\"column === 'edit'\">\n        <button mat-icon-button (click)=\"goToEditProduct(restaurant.id, element.id)\">\n          <mat-icon color=\"primary\">edit</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column === 'delete'\">\n        <button mat-icon-button (click)=\"deleteProduct(element)\">\n          <mat-icon color=\"warn\">delete</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column !== 'edit' && column !== 'delete'\">\n         {{ getDisplayTitleCategory(element, column)}}\n      </span>\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"expandedDetail\">\n    <td mat-cell *matCellDef=\"let element\" [attr.colspan]=\"columnsToDisplay.length\">\n      <div class=\"row\">\n        <div class=\"col-md-10\">\n          <div class=\"example-element-detail\"\n               [@detailExpand]=\"element == expandedElement ? 'expanded' : 'collapsed'\">\n            <div class=\"example-element-diagram\">\n              <div class=\"example-element-symbol\"> <img mat-card-sm-image class=\"image-sm\" src=\"{{element.imageUrl}}\" alt=\"Restaurant photo\"></div>\n            </div>\n            <div class=\"example-element-description\">\n              <span class=\"example-element-description-attribution\">Описание на продукта:</span>\n              {{element.description}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsToDisplay\"></tr>\n  <tr mat-row *matRowDef=\"let element; columns: columnsToDisplay;\"\n      class=\"example-element-row\"\n      [class.example-expanded-row]=\"expandedElement === element\"\n      (click)=\"expandedElement = expandedElement === element ? null : element\">\n  </tr>\n  <tr mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"example-detail-row\"></tr>\n</table>\n";
+    __webpack_exports__["default"] = "<br>\n<div class=\"text-center border-bottom\">\n  <h2>Продукти от ресторант: <u>{{restaurant?.name}}</u></h2>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-6\">\n    <mat-form-field>\n      <mat-label>Търсете продукт</mat-label>\n      <input matInput (keyup)=\"applyFilter($event)\" placeholder=\"Търсете продукт\">\n    </mat-form-field>\n  </div>\n  <div class=\"col-md-6 reorder-button\">\n    <button mat-raised-button (click)=\"openReorderCategoriesDialog()\">\n      <mat-icon color=\"accent\">reorder</mat-icon><span>Подреди категориите</span>\n    </button>\n  </div>\n</div>\n<div class=\"alert alert-danger\" *ngIf=\"products && products.length === 0\">\n  Все още няма продукти за този ресторант\n</div>\n<div class=\"loading-spinner\" *ngIf=\"!products\">\n  <div>\n    <mat-progress-spinner\n      class=\"example-margin\"\n      [color]=\"color\"\n      [mode]=\"mode\"\n      [value]=\"value\">\n    </mat-progress-spinner>\n  </div>\n</div>\n<table *ngIf=\"products\" mat-table\n       [dataSource]=\"dataSource\" multiTemplateDataRows\n       class=\"mat-elevation-z8\">\n  <ng-container matColumnDef=\"{{column}}\" *ngFor=\"let column of columnsToDisplay\">\n    <th mat-header-cell *matHeaderCellDef> {{column}} </th>\n    <td mat-cell *matCellDef=\"let element\">\n      <span *ngIf=\"column === 'edit'\">\n        <button mat-icon-button (click)=\"goToEditProduct(restaurant.id, element.id)\">\n          <mat-icon color=\"primary\">edit</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column === 'delete'\">\n        <button mat-icon-button (click)=\"deleteProduct(element)\">\n          <mat-icon color=\"warn\">delete</mat-icon>\n        </button>\n      </span>\n      <span *ngIf=\"column !== 'edit' && column !== 'delete'\">\n         {{ getDisplayTitleCategory(element, column)}}\n      </span>\n    </td>\n  </ng-container>\n\n  <ng-container matColumnDef=\"expandedDetail\">\n    <td mat-cell *matCellDef=\"let element\" [attr.colspan]=\"columnsToDisplay.length\">\n      <div class=\"row\">\n        <div class=\"col-md-10\">\n          <div class=\"example-element-detail\"\n               [@detailExpand]=\"element == expandedElement ? 'expanded' : 'collapsed'\">\n            <div class=\"example-element-diagram\">\n              <div class=\"example-element-symbol\"> <img mat-card-sm-image class=\"image-sm\" src=\"{{element.imageUrl}}\" alt=\"Restaurant photo\"></div>\n            </div>\n            <div class=\"example-element-description\">\n              <span class=\"example-element-description-attribution\">Описание на продукта:</span>\n              {{element.description}}\n            </div>\n          </div>\n        </div>\n      </div>\n    </td>\n  </ng-container>\n\n  <tr mat-header-row *matHeaderRowDef=\"columnsToDisplay\"></tr>\n  <tr mat-row *matRowDef=\"let element; columns: columnsToDisplay;\"\n      class=\"example-element-row\"\n      [class.example-expanded-row]=\"expandedElement === element\"\n      (click)=\"expandedElement = expandedElement === element ? null : element\">\n  </tr>\n  <tr mat-row *matRowDef=\"let row; columns: ['expandedDetail']\" class=\"example-detail-row\"></tr>\n</table>\n";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/components/product/product-list/reorder-categories.component.html":
+  /*!*************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/components/product/product-list/reorder-categories.component.html ***!
+    \*************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppComponentsProductProductListReorderCategoriesComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<mat-dialog-content>\n <h2>Подреди категориите</h2>\n  <div cdkDropList cdkDropListOrientation=\"horizontal\" class=\"example-list\" (cdkDropListDropped)=\"drop($event)\">\n    <div class=\"example-box\" *ngFor=\"let category of categories\" cdkDrag>{{category.title}}</div>\n  </div>\n</mat-dialog-content>\n<mat-dialog-actions align=\"end\">\n  <button class=\"text-white\" mat-raised-button color=\"primary\"  tabindex=\"1\" (click)=\"onConfirmClick()\">Запази</button>\n  <button mat-raised-button mat-dialog-close tabindex=\"-1\">Отказ</button>\n</mat-dialog-actions>\n";
     /***/
   },
 
@@ -251,7 +271,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-5\">\n        <form [formGroup]=\"form\">\n          <h2>Добави ресторант</h2>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <button [disabled]=\"spinner\" mat-raised-button color=\"primary\" class=\"add-restaurant-button text-white\" (click)=\"addRestaurant()\">\n            <mat-icon>add</mat-icon> <span>Добави</span>\n          </button>\n        </form>\n      </div>\n      <div class=\"col-md-7\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <h3>Избери картинка за корицата</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputCover.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedCoverImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCover type=\"file\" id=\"file\">\n          </div>\n          <div class=\"col-md-6\">\n            <h3>Избери лого на ресторанта</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputLogo.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedLogoImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogo type=\"file\" id=\"file2\">\n          </div>\n        </div>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
+    __webpack_exports__["default"] = "<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-5\">\n        <form [formGroup]=\"form\">\n          <h2>Добави ресторант</h2>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n         <div class=\"row\">\n           <div class=\"col-md-6\">\n             <mat-form-field class=\"full-width-input\">\n               <input type=\"time\" matInput placeholder=\"От\" formControlName=\"workingHoursStart\" required>\n               <mat-error>\n                 Моля въведете работно време на ресторанта\n               </mat-error>\n             </mat-form-field>\n           </div>\n           <div class=\"col-md-6\">\n             <mat-form-field class=\"full-width-input\">\n               <input type=\"time\" matInput placeholder=\"До\" formControlName=\"workingHoursEnd\" required>\n               <mat-error>\n                 Моля въведете работно време на ресторанта\n               </mat-error>\n             </mat-form-field>\n           </div>\n         </div>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <button [disabled]=\"spinner\" mat-raised-button color=\"primary\" class=\"add-restaurant-button text-white\" (click)=\"addRestaurant()\">\n            <mat-icon>add</mat-icon> <span>Добави</span>\n          </button>\n        </form>\n      </div>\n      <div class=\"col-md-7\">\n        <div class=\"row\">\n          <div class=\"col-md-6\">\n            <h3>Избери картинка за корицата</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputCover.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedCoverImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCover type=\"file\" id=\"file\">\n          </div>\n          <div class=\"col-md-6\">\n            <h3>Избери лого на ресторанта</h3>\n            <button type=\"button\" mat-raised-button (click)=\"fileInputLogo.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n            <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n              <p>Избран файл: {{selectedLogoImage}}</p>\n            </span>\n            <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogo type=\"file\" id=\"file2\">\n          </div>\n        </div>\n      </div>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
     /***/
   },
 
@@ -271,7 +291,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<h2 class=\"text-center\">Редактирате ресторант: {{restaurant.name}}</h2>\n<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <mat-label>Статус на ресторант</mat-label>\n            <mat-select id=\"restaurant-status\" formControlName=\"active\">\n              <mat-option value=\"inactive\">неактивен</mat-option>\n              <mat-option value=\"active\">активен</mat-option>\n            </mat-select>\n          </mat-form-field>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <h3>Избери корица на ресторанта</h3>\n                <button type=\"button\" mat-raised-button (click)=\"fileInputCoverImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n                  Избран файл: {{selectedCoverImage}}\n                </span>\n                <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCoverImage type=\"file\" id=\"file-cover\">\n            </div>\n            <div class=\"col-md-6\">\n              <h3>Избери лого на ресторанта</h3>\n              <button type=\"button\" mat-raised-button (click)=\"fileInputLogoImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n                Избран файл: {{selectedLogoImage}}\n              </span>\n              <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogoImage type=\"file\" id=\"file-logo\">\n            </div>\n          </div>\n          <br>\n          <div class=\"row\">\n            <div class=\"col-md-6 edit-restaurant-images\">\n              <h2>Корица на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.coverImageUrl}}\" alt=\"cover image\">\n            </div>\n            <div class=\"col-md-6\">\n              <h2>Лого на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.logoImageUrl}}\" alt=\"logo image\">\n            </div>\n          </div>\n          <br>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <br>\n          <button mat-raised-button color=\"primary\" [disabled]=\"spinner\" class=\"edit-restaurant-button text-white\" (click)=\"editRestaurant(restaurant.id)\"> <mat-icon>save</mat-icon> Запази</button>\n        </form>\n      </div>\n    </div>\n    <div class=\"row\">\n      <br>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
+    __webpack_exports__["default"] = "<h2 class=\"text-center\">Редактирате ресторант: {{restaurant.name}}</h2>\n<mat-card>\n  <mat-card-content>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <form [formGroup]=\"form\">\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Име на ресторант\" formControlName=\"name\" required>\n            <mat-error>\n              Моля въведете име на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field class=\"full-width-input\">\n            <input matInput placeholder=\"Локация на ресторанта\" formControlName=\"location\" required>\n            <mat-error>\n              Моля въведете локация на ресторанта\n            </mat-error>\n          </mat-form-field>\n          <mat-form-field>\n            <mat-label>Статус на ресторант</mat-label>\n            <mat-select id=\"restaurant-status\" formControlName=\"active\">\n              <mat-option value=\"inactive\">неактивен</mat-option>\n              <mat-option value=\"active\">активен</mat-option>\n            </mat-select>\n          </mat-form-field>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n                <h3>Избери корица на ресторанта</h3>\n                <button type=\"button\" mat-raised-button (click)=\"fileInputCoverImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedCoverImage\" class=\"mat-active\">\n                  Избран файл: {{selectedCoverImage}}\n                </span>\n                <input hidden (change)=\"onFileSelect($event, 'coverImage')\" #fileInputCoverImage type=\"file\" id=\"file-cover\">\n            </div>\n            <div class=\"col-md-6\">\n              <h3>Избери лого на ресторанта</h3>\n              <button type=\"button\" mat-raised-button (click)=\"fileInputLogoImage.click()\"> <mat-icon>attachment</mat-icon> Качи файл</button>\n              <br>\n              <span *ngIf=\"selectedLogoImage\" class=\"mat-active\">\n                Избран файл: {{selectedLogoImage}}\n              </span>\n              <input hidden (change)=\"onFileSelect($event, 'logoImage')\" #fileInputLogoImage type=\"file\" id=\"file-logo\">\n            </div>\n          </div>\n          <br>\n          <div class=\"row\">\n            <div class=\"col-md-6 edit-restaurant-images\">\n              <h2>Корица на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.coverImageUrl}}\" alt=\"cover image\">\n            </div>\n            <div class=\"col-md-6\">\n              <h2>Лого на ресторанта</h2>\n              <img mat-card-xl-image src=\"{{restaurant.logoImageUrl}}\" alt=\"logo image\">\n            </div>\n          </div>\n          <div class=\"row\">\n            <div class=\"col-md-6\">\n              <mat-form-field class=\"full-width-input\">\n                <input type=\"time\" matInput placeholder=\"От\" formControlName=\"workingHoursStart\" required>\n                <mat-error>\n                  Моля въведете работно време на ресторанта\n                </mat-error>\n              </mat-form-field>\n            </div>\n            <div class=\"col-md-6\">\n              <mat-form-field class=\"full-width-input\">\n                <input type=\"time\" matInput placeholder=\"До\" formControlName=\"workingHoursEnd\" required>\n                <mat-error>\n                  Моля въведете работно време на ресторанта\n                </mat-error>\n              </mat-form-field>\n            </div>\n          </div>\n          <br>\n          <div class=\"loading-spinner\" *ngIf=\"spinner\">\n            <mat-progress-spinner\n              class=\"example-margin\"\n              [color]=\"color\"\n              [mode]=\"mode\"\n              [value]=\"progressSpinnerValue\">\n            </mat-progress-spinner>\n          </div>\n          <br>\n          <button mat-raised-button color=\"primary\" [disabled]=\"spinner\" class=\"edit-restaurant-button text-white\" (click)=\"editRestaurant(restaurant.id)\"> <mat-icon>save</mat-icon> Запази</button>\n        </form>\n      </div>\n    </div>\n    <div class=\"row\">\n      <br>\n    </div>\n  </mat-card-content>\n</mat-card>\n";
     /***/
   },
 
@@ -653,20 +673,32 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _components_product_edit_product_edit_product_component__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(
     /*! ./components/product/edit-product/edit-product.component */
     "./src/app/components/product/edit-product/edit-product.component.ts");
+    /* harmony import */
+
+
+    var _components_product_product_list_reorder_categories_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(
+    /*! ./components/product/product-list/reorder-categories.component */
+    "./src/app/components/product/product-list/reorder-categories.component.ts");
+    /* harmony import */
+
+
+    var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(
+    /*! @angular/cdk/drag-drop */
+    "./node_modules/@angular/cdk/fesm2015/drag-drop.js");
 
     var AppModule = function AppModule() {
       _classCallCheck(this, AppModule);
     };
 
     AppModule = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
-      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _components_common_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_6__["NavigationComponent"], _components_restaurant_list_restaurants_list_restaurants_component__WEBPACK_IMPORTED_MODULE_7__["ListRestaurantsComponent"], _components_restaurant_create_restaurant_create_restaurant_component__WEBPACK_IMPORTED_MODULE_9__["CreateRestaurantComponent"], _components_product_product_list_product_list_component__WEBPACK_IMPORTED_MODULE_10__["ProductListComponent"], _components_product_create_product_create_product_component__WEBPACK_IMPORTED_MODULE_11__["CreateProductComponent"], _components_restaurant_edit_restaurant_edit_restaurant_component__WEBPACK_IMPORTED_MODULE_12__["EditRestaurantComponent"], _components_common_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"], _components_product_edit_product_edit_product_component__WEBPACK_IMPORTED_MODULE_28__["EditProductComponent"], _components_common_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"], _pipes_product_list_filter_pipe__WEBPACK_IMPORTED_MODULE_18__["ProductListFilterPipe"], _pipes_user_list_filter_pipe__WEBPACK_IMPORTED_MODULE_23__["UserListFilterPipe"], _components_user_list_users_list_users_component__WEBPACK_IMPORTED_MODULE_19__["ListUsersComponent"], _components_restaurant_list_restaurants_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"], _components_product_create_product_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_27__["CreateNewCategoryDialogComponent"], _components_user_create_user_create_user_component__WEBPACK_IMPORTED_MODULE_25__["CreateUserComponent"], _components_account_my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_26__["MyProfileComponent"], _components_product_import_products_import_products_component__WEBPACK_IMPORTED_MODULE_24__["ImportProductsComponent"]],
-      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _routing_module__WEBPACK_IMPORTED_MODULE_3__["RoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_15__["ToastrModule"].forRoot(), _modules_material_material_module__WEBPACK_IMPORTED_MODULE_20__["MaterialModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_21__["FlexLayoutModule"]],
+      declarations: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"], _components_common_navigation_navigation_component__WEBPACK_IMPORTED_MODULE_6__["NavigationComponent"], _components_restaurant_list_restaurants_list_restaurants_component__WEBPACK_IMPORTED_MODULE_7__["ListRestaurantsComponent"], _components_restaurant_create_restaurant_create_restaurant_component__WEBPACK_IMPORTED_MODULE_9__["CreateRestaurantComponent"], _components_product_product_list_product_list_component__WEBPACK_IMPORTED_MODULE_10__["ProductListComponent"], _components_product_create_product_create_product_component__WEBPACK_IMPORTED_MODULE_11__["CreateProductComponent"], _components_restaurant_edit_restaurant_edit_restaurant_component__WEBPACK_IMPORTED_MODULE_12__["EditRestaurantComponent"], _components_common_home_home_component__WEBPACK_IMPORTED_MODULE_13__["HomeComponent"], _components_product_edit_product_edit_product_component__WEBPACK_IMPORTED_MODULE_28__["EditProductComponent"], _components_common_login_login_component__WEBPACK_IMPORTED_MODULE_14__["LoginComponent"], _pipes_product_list_filter_pipe__WEBPACK_IMPORTED_MODULE_18__["ProductListFilterPipe"], _pipes_user_list_filter_pipe__WEBPACK_IMPORTED_MODULE_23__["UserListFilterPipe"], _components_user_list_users_list_users_component__WEBPACK_IMPORTED_MODULE_19__["ListUsersComponent"], _components_restaurant_list_restaurants_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"], _components_product_create_product_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_27__["CreateNewCategoryDialogComponent"], _components_user_create_user_create_user_component__WEBPACK_IMPORTED_MODULE_25__["CreateUserComponent"], _components_account_my_profile_my_profile_component__WEBPACK_IMPORTED_MODULE_26__["MyProfileComponent"], _components_product_import_products_import_products_component__WEBPACK_IMPORTED_MODULE_24__["ImportProductsComponent"], _components_product_product_list_reorder_categories_component__WEBPACK_IMPORTED_MODULE_29__["ReorderCategoriesComponent"]],
+      imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _routing_module__WEBPACK_IMPORTED_MODULE_3__["RoutingModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HttpClientModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"], _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_16__["BrowserAnimationsModule"], ngx_toastr__WEBPACK_IMPORTED_MODULE_15__["ToastrModule"].forRoot(), _modules_material_material_module__WEBPACK_IMPORTED_MODULE_20__["MaterialModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_21__["FlexLayoutModule"], _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_30__["DragDropModule"]],
       providers: [{
         provide: _angular_common_http__WEBPACK_IMPORTED_MODULE_8__["HTTP_INTERCEPTORS"],
         useClass: _security_token_interceptor__WEBPACK_IMPORTED_MODULE_17__["TokenInterceptor"],
         multi: true
       }],
-      entryComponents: [_components_product_create_product_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_27__["CreateNewCategoryDialogComponent"], _components_restaurant_list_restaurants_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"]],
+      entryComponents: [_components_product_create_product_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_27__["CreateNewCategoryDialogComponent"], _components_restaurant_list_restaurants_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_22__["ConfirmationDialogComponent"], _components_product_product_list_reorder_categories_component__WEBPACK_IMPORTED_MODULE_29__["ReorderCategoriesComponent"]],
       bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
     })], AppModule);
     /***/
@@ -1487,13 +1519,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 switch (_context5.prev = _context5.next) {
                   case 0:
                     restaurantId = this.selectedRestaurant.value;
+                    this.selectedRestaurantId = restaurantId;
                     this.restaurantService.getById(restaurantId).then(function (selectedRestaurantResponse) {
                       _this3.menus = selectedRestaurantResponse.body.menus || ['default'];
                       _this3.categories = selectedRestaurantResponse.body.categories;
                       _this3.selectedRestaurantFullObject = selectedRestaurantResponse.body;
                     });
 
-                  case 2:
+                  case 3:
                   case "end":
                     return _context5.stop();
                 }
@@ -1529,16 +1562,16 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
           this.dialog.open(_create_new_category_dialog__WEBPACK_IMPORTED_MODULE_10__["CreateNewCategoryDialogComponent"], {
             data: {
-              restaurantId: this.selectedRestaurant.value
+              restaurantId: this.selectedRestaurantId
             },
             height: '240px',
             width: '450px'
           });
           this.dialog.afterAllClosed.subscribe(function (result) {
-            _this4.categoryService.getAllCategoriesByRestaurantId(_this4.selectedRestaurant.value).then(function (categories) {
+            _this4.categoryService.getAllCategoriesByRestaurantId(_this4.selectedRestaurantId).then(function (categories) {
               _this4.categories = categories;
 
-              if (_this4.categories.length !== 0) {
+              if (_this4.categories.length === 1) {
                 _this4.addedCategory = _this4.categories[_this4.categories.length - 1];
 
                 _this4.category.setValue(_this4.addedCategory);
@@ -2201,7 +2234,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "#search-box {\n  margin-bottom: 30px;\n  margin-top: 30px;\n}\n\nmat-form-field {\n  width: 400px;\n}\n\nmat-card {\n  width: 30%;\n  display: inline-block;\n  margin: 10px;\n}\n\nmat-card-content {\n  margin-top: 10px;\n}\n\nmat-card-header img {\n  text-align: center;\n  margin: 0 auto;\n}\n\ntable {\n  width: 100%;\n}\n\ntr.example-detail-row {\n  height: 0;\n}\n\ntr.example-element-row:not(.example-expanded-row):hover {\n  background: whitesmoke;\n}\n\ntr.example-element-row:not(.example-expanded-row):active {\n  background: #efefef;\n}\n\n.example-element-row td {\n  border-bottom-width: 0;\n}\n\n.example-element-detail {\n  overflow: hidden;\n  display: flex;\n}\n\n.example-element-diagram {\n  min-width: 80px;\n  padding: 8px;\n  font-weight: lighter;\n  margin: 8px 0;\n  height: 104px;\n}\n\n.example-element-symbol {\n  font-weight: bold;\n  font-size: 40px;\n  line-height: normal;\n}\n\n.example-element-description {\n  padding: 16px;\n}\n\n.example-element-description-attribution {\n  opacity: 0.5;\n}\n\n.image-sm {\n  width: 20%;\n  height: 15%;\n}\n\n.actions {\n  margin-top: -40px;\n}\n\n.loading-spinner {\n  position: relative;\n  left: 50%;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wcm9kdWN0L3Byb2R1Y3QtbGlzdC9wcm9kdWN0LWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFtQjtFQUNuQixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxVQUFVO0VBQ1YscUJBQXFCO0VBQ3JCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsU0FBUztBQUNYOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osb0JBQW9CO0VBQ3BCLGFBQWE7RUFDYixhQUFhO0FBQ2Y7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsZUFBZTtFQUNmLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFVBQVU7RUFDVixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUztBQUNYIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wcm9kdWN0L3Byb2R1Y3QtbGlzdC9wcm9kdWN0LWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIiNzZWFyY2gtYm94IHtcbiAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgbWFyZ2luLXRvcDogMzBweDtcbn1cblxubWF0LWZvcm0tZmllbGQge1xuICB3aWR0aDogNDAwcHg7XG59XG5cbm1hdC1jYXJkIHtcbiAgd2lkdGg6IDMwJTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBtYXJnaW46IDEwcHg7XG59XG5cbm1hdC1jYXJkLWNvbnRlbnQge1xuICBtYXJnaW4tdG9wOiAxMHB4O1xufVxuXG5cbm1hdC1jYXJkLWhlYWRlciBpbWcge1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gIG1hcmdpbjogMCBhdXRvO1xufVxuXG50YWJsZSB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG50ci5leGFtcGxlLWRldGFpbC1yb3cge1xuICBoZWlnaHQ6IDA7XG59XG5cbnRyLmV4YW1wbGUtZWxlbWVudC1yb3c6bm90KC5leGFtcGxlLWV4cGFuZGVkLXJvdyk6aG92ZXIge1xuICBiYWNrZ3JvdW5kOiB3aGl0ZXNtb2tlO1xufVxuXG50ci5leGFtcGxlLWVsZW1lbnQtcm93Om5vdCguZXhhbXBsZS1leHBhbmRlZC1yb3cpOmFjdGl2ZSB7XG4gIGJhY2tncm91bmQ6ICNlZmVmZWY7XG59XG5cbi5leGFtcGxlLWVsZW1lbnQtcm93IHRkIHtcbiAgYm9yZGVyLWJvdHRvbS13aWR0aDogMDtcbn1cblxuLmV4YW1wbGUtZWxlbWVudC1kZXRhaWwge1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBkaXNwbGF5OiBmbGV4O1xufVxuXG4uZXhhbXBsZS1lbGVtZW50LWRpYWdyYW0ge1xuICBtaW4td2lkdGg6IDgwcHg7XG4gIHBhZGRpbmc6IDhweDtcbiAgZm9udC13ZWlnaHQ6IGxpZ2h0ZXI7XG4gIG1hcmdpbjogOHB4IDA7XG4gIGhlaWdodDogMTA0cHg7XG59XG5cbi5leGFtcGxlLWVsZW1lbnQtc3ltYm9sIHtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGZvbnQtc2l6ZTogNDBweDtcbiAgbGluZS1oZWlnaHQ6IG5vcm1hbDtcbn1cblxuLmV4YW1wbGUtZWxlbWVudC1kZXNjcmlwdGlvbiB7XG4gIHBhZGRpbmc6IDE2cHg7XG59XG5cbi5leGFtcGxlLWVsZW1lbnQtZGVzY3JpcHRpb24tYXR0cmlidXRpb24ge1xuICBvcGFjaXR5OiAwLjU7XG59XG5cbi5pbWFnZS1zbSB7XG4gIHdpZHRoOiAyMCU7XG4gIGhlaWdodDogMTUlO1xufVxuXG4uYWN0aW9ucyB7XG4gIG1hcmdpbi10b3A6IC00MHB4O1xufVxuXG4ubG9hZGluZy1zcGlubmVyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBsZWZ0OiA1MCU7XG59XG4iXX0= */";
+    __webpack_exports__["default"] = "#search-box {\n  margin-bottom: 30px;\n  margin-top: 30px;\n}\n\nmat-form-field {\n  width: 400px;\n}\n\nmat-card {\n  width: 30%;\n  display: inline-block;\n  margin: 10px;\n}\n\nmat-card-content {\n  margin-top: 10px;\n}\n\nmat-card-header img {\n  text-align: center;\n  margin: 0 auto;\n}\n\ntable {\n  width: 100%;\n}\n\ntr.example-detail-row {\n  height: 0;\n}\n\ntr.example-element-row:not(.example-expanded-row):hover {\n  background: whitesmoke;\n}\n\ntr.example-element-row:not(.example-expanded-row):active {\n  background: #efefef;\n}\n\n.example-element-row td {\n  border-bottom-width: 0;\n}\n\n.example-element-detail {\n  overflow: hidden;\n  display: flex;\n}\n\n.example-element-diagram {\n  min-width: 80px;\n  padding: 8px;\n  font-weight: lighter;\n  margin: 8px 0;\n  height: 104px;\n}\n\n.example-element-symbol {\n  font-weight: bold;\n  font-size: 40px;\n  line-height: normal;\n}\n\n.example-element-description {\n  padding: 16px;\n}\n\n.example-element-description-attribution {\n  opacity: 0.5;\n}\n\n.image-sm {\n  width: 20%;\n  height: 15%;\n}\n\n.actions {\n  margin-top: -40px;\n}\n\n.loading-spinner {\n  position: relative;\n  left: 50%;\n}\n\n.reorder-button {\n  display: flex;\n  align-items: center;\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wcm9kdWN0L3Byb2R1Y3QtbGlzdC9wcm9kdWN0LWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLG1CQUFtQjtFQUNuQixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxVQUFVO0VBQ1YscUJBQXFCO0VBQ3JCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGdCQUFnQjtBQUNsQjs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsU0FBUztBQUNYOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0Usc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsZ0JBQWdCO0VBQ2hCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGVBQWU7RUFDZixZQUFZO0VBQ1osb0JBQW9CO0VBQ3BCLGFBQWE7RUFDYixhQUFhO0FBQ2Y7O0FBRUE7RUFDRSxpQkFBaUI7RUFDakIsZUFBZTtFQUNmLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFVBQVU7RUFDVixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUztBQUNYOztBQUVBO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtBQUNyQiIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvcHJvZHVjdC9wcm9kdWN0LWxpc3QvcHJvZHVjdC1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIjc2VhcmNoLWJveCB7XG4gIG1hcmdpbi1ib3R0b206IDMwcHg7XG4gIG1hcmdpbi10b3A6IDMwcHg7XG59XG5cbm1hdC1mb3JtLWZpZWxkIHtcbiAgd2lkdGg6IDQwMHB4O1xufVxuXG5tYXQtY2FyZCB7XG4gIHdpZHRoOiAzMCU7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbiAgbWFyZ2luOiAxMHB4O1xufVxuXG5tYXQtY2FyZC1jb250ZW50IHtcbiAgbWFyZ2luLXRvcDogMTBweDtcbn1cblxuXG5tYXQtY2FyZC1oZWFkZXIgaW1nIHtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBtYXJnaW46IDAgYXV0bztcbn1cblxudGFibGUge1xuICB3aWR0aDogMTAwJTtcbn1cblxudHIuZXhhbXBsZS1kZXRhaWwtcm93IHtcbiAgaGVpZ2h0OiAwO1xufVxuXG50ci5leGFtcGxlLWVsZW1lbnQtcm93Om5vdCguZXhhbXBsZS1leHBhbmRlZC1yb3cpOmhvdmVyIHtcbiAgYmFja2dyb3VuZDogd2hpdGVzbW9rZTtcbn1cblxudHIuZXhhbXBsZS1lbGVtZW50LXJvdzpub3QoLmV4YW1wbGUtZXhwYW5kZWQtcm93KTphY3RpdmUge1xuICBiYWNrZ3JvdW5kOiAjZWZlZmVmO1xufVxuXG4uZXhhbXBsZS1lbGVtZW50LXJvdyB0ZCB7XG4gIGJvcmRlci1ib3R0b20td2lkdGg6IDA7XG59XG5cbi5leGFtcGxlLWVsZW1lbnQtZGV0YWlsIHtcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgZGlzcGxheTogZmxleDtcbn1cblxuLmV4YW1wbGUtZWxlbWVudC1kaWFncmFtIHtcbiAgbWluLXdpZHRoOiA4MHB4O1xuICBwYWRkaW5nOiA4cHg7XG4gIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xuICBtYXJnaW46IDhweCAwO1xuICBoZWlnaHQ6IDEwNHB4O1xufVxuXG4uZXhhbXBsZS1lbGVtZW50LXN5bWJvbCB7XG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xuICBmb250LXNpemU6IDQwcHg7XG4gIGxpbmUtaGVpZ2h0OiBub3JtYWw7XG59XG5cbi5leGFtcGxlLWVsZW1lbnQtZGVzY3JpcHRpb24ge1xuICBwYWRkaW5nOiAxNnB4O1xufVxuXG4uZXhhbXBsZS1lbGVtZW50LWRlc2NyaXB0aW9uLWF0dHJpYnV0aW9uIHtcbiAgb3BhY2l0eTogMC41O1xufVxuXG4uaW1hZ2Utc20ge1xuICB3aWR0aDogMjAlO1xuICBoZWlnaHQ6IDE1JTtcbn1cblxuLmFjdGlvbnMge1xuICBtYXJnaW4tdG9wOiAtNDBweDtcbn1cblxuLmxvYWRpbmctc3Bpbm5lciB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgbGVmdDogNTAlO1xufVxuXG4ucmVvcmRlci1idXR0b24ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuIl19 */";
     /***/
   },
 
@@ -2290,9 +2323,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_material_table__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
     /*! @angular/material/table */
     "./node_modules/@angular/material/fesm2015/table.js");
+    /* harmony import */
+
+
+    var _reorder_categories_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
+    /*! ./reorder-categories.component */
+    "./src/app/components/product/product-list/reorder-categories.component.ts");
+    /* harmony import */
+
+
+    var _services_category_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! ../../../services/category.service */
+    "./src/app/services/category.service.ts");
 
     var ProductListComponent = /*#__PURE__*/function () {
-      function ProductListComponent(restaurantService, productService, activeRoute, toastrService, router, dialog) {
+      function ProductListComponent(restaurantService, productService, activeRoute, toastrService, router, dialog, categoryService) {
         _classCallCheck(this, ProductListComponent);
 
         this.restaurantService = restaurantService;
@@ -2301,6 +2346,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         this.toastrService = toastrService;
         this.router = router;
         this.dialog = dialog;
+        this.categoryService = categoryService;
         this.text = '';
         this.columnsToDisplay = ['title', 'price', 'allergens', 'tags', 'category', 'menus', 'edit', 'delete'];
         this.color = 'accent';
@@ -2427,6 +2473,26 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function goToEditProduct(restaurantId, productId) {
           this.router.navigateByUrl("/restaurants/".concat(restaurantId, "/products/").concat(productId, "/edit"));
         }
+      }, {
+        key: "openReorderCategoriesDialog",
+        value: function openReorderCategoriesDialog() {
+          var _this8 = this;
+
+          var dialog = this.dialog.open(_reorder_categories_component__WEBPACK_IMPORTED_MODULE_11__["ReorderCategoriesComponent"], {
+            data: new _reorder_categories_component__WEBPACK_IMPORTED_MODULE_11__["ReorderCategoriesPayload"](this.restaurant.categories)
+          });
+          return dialog.afterClosed().subscribe(function (confirmed) {
+            if (confirmed) {
+              var updatedCategories = dialog.componentInstance.categories;
+
+              _this8.categoryService.updateCategories(_this8.restaurant.id, updatedCategories).then(function () {
+                return _this8.fetchProducts().then(function () {
+                  _this8.toastrService.success('Успешно обновихте категориите!');
+                });
+              });
+            }
+          });
+        }
       }]);
 
       return ProductListComponent;
@@ -2445,6 +2511,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
       }, {
         type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_8__["MatDialog"]
+      }, {
+        type: _services_category_service__WEBPACK_IMPORTED_MODULE_12__["CategoryService"]
       }];
     };
 
@@ -2464,6 +2532,135 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       "./src/app/components/product/product-list/product-list.component.css"))["default"]]
     })], ProductListComponent);
     /***/
+  },
+
+  /***/
+  "./src/app/components/product/product-list/reorder-categories.component.css":
+  /*!**********************************************************************************!*\
+    !*** ./src/app/components/product/product-list/reorder-categories.component.css ***!
+    \**********************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppComponentsProductProductListReorderCategoriesComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".example-list {\n  width: 1000px;\n  max-width: 100%;\n  border: solid 1px #ccc;\n  min-height: 60px;\n  display: flex;\n  flex-direction: row;\n  background: white;\n  border-radius: 4px;\n  overflow: hidden;\n}\n\n.example-box {\n  padding: 20px 10px;\n  border-right: solid 1px #ccc;\n  color: rgba(0, 0, 0, 0.87);\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: space-between;\n  box-sizing: border-box;\n  cursor: move;\n  background: white;\n  font-size: 14px;\n  flex-grow: 1;\n  flex-basis: 0;\n}\n\n.cdk-drag-preview {\n  box-sizing: border-box;\n  border-radius: 4px;\n  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),\n  0 8px 10px 1px rgba(0, 0, 0, 0.14),\n  0 3px 14px 2px rgba(0, 0, 0, 0.12);\n}\n\n.cdk-drag-placeholder {\n  opacity: 0;\n}\n\n.cdk-drag-animating {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n\n.example-box:last-child {\n  border: none;\n}\n\n.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {\n  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);\n}\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9wcm9kdWN0L3Byb2R1Y3QtbGlzdC9yZW9yZGVyLWNhdGVnb3JpZXMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQWE7RUFDYixlQUFlO0VBQ2Ysc0JBQXNCO0VBQ3RCLGdCQUFnQjtFQUNoQixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLGlCQUFpQjtFQUNqQixrQkFBa0I7RUFDbEIsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLDRCQUE0QjtFQUM1QiwwQkFBMEI7RUFDMUIsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIsOEJBQThCO0VBQzlCLHNCQUFzQjtFQUN0QixZQUFZO0VBQ1osaUJBQWlCO0VBQ2pCLGVBQWU7RUFDZixZQUFZO0VBQ1osYUFBYTtBQUNmOztBQUVBO0VBQ0Usc0JBQXNCO0VBQ3RCLGtCQUFrQjtFQUNsQjs7b0NBRWtDO0FBQ3BDOztBQUVBO0VBQ0UsVUFBVTtBQUNaOztBQUVBO0VBQ0Usc0RBQXNEO0FBQ3hEOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0Usc0RBQXNEO0FBQ3hEIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9wcm9kdWN0L3Byb2R1Y3QtbGlzdC9yZW9yZGVyLWNhdGVnb3JpZXMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5leGFtcGxlLWxpc3Qge1xuICB3aWR0aDogMTAwMHB4O1xuICBtYXgtd2lkdGg6IDEwMCU7XG4gIGJvcmRlcjogc29saWQgMXB4ICNjY2M7XG4gIG1pbi1oZWlnaHQ6IDYwcHg7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGJhY2tncm91bmQ6IHdoaXRlO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIG92ZXJmbG93OiBoaWRkZW47XG59XG5cbi5leGFtcGxlLWJveCB7XG4gIHBhZGRpbmc6IDIwcHggMTBweDtcbiAgYm9yZGVyLXJpZ2h0OiBzb2xpZCAxcHggI2NjYztcbiAgY29sb3I6IHJnYmEoMCwgMCwgMCwgMC44Nyk7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgY3Vyc29yOiBtb3ZlO1xuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcbiAgZm9udC1zaXplOiAxNHB4O1xuICBmbGV4LWdyb3c6IDE7XG4gIGZsZXgtYmFzaXM6IDA7XG59XG5cbi5jZGstZHJhZy1wcmV2aWV3IHtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICBib3gtc2hhZG93OiAwIDVweCA1cHggLTNweCByZ2JhKDAsIDAsIDAsIDAuMiksXG4gIDAgOHB4IDEwcHggMXB4IHJnYmEoMCwgMCwgMCwgMC4xNCksXG4gIDAgM3B4IDE0cHggMnB4IHJnYmEoMCwgMCwgMCwgMC4xMik7XG59XG5cbi5jZGstZHJhZy1wbGFjZWhvbGRlciB7XG4gIG9wYWNpdHk6IDA7XG59XG5cbi5jZGstZHJhZy1hbmltYXRpbmcge1xuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMjUwbXMgY3ViaWMtYmV6aWVyKDAsIDAsIDAuMiwgMSk7XG59XG5cbi5leGFtcGxlLWJveDpsYXN0LWNoaWxkIHtcbiAgYm9yZGVyOiBub25lO1xufVxuXG4uZXhhbXBsZS1saXN0LmNkay1kcm9wLWxpc3QtZHJhZ2dpbmcgLmV4YW1wbGUtYm94Om5vdCguY2RrLWRyYWctcGxhY2Vob2xkZXIpIHtcbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIDI1MG1zIGN1YmljLWJlemllcigwLCAwLCAwLjIsIDEpO1xufVxuIl19 */";
+    /***/
+  },
+
+  /***/
+  "./src/app/components/product/product-list/reorder-categories.component.ts":
+  /*!*********************************************************************************!*\
+    !*** ./src/app/components/product/product-list/reorder-categories.component.ts ***!
+    \*********************************************************************************/
+
+  /*! exports provided: ReorderCategoriesComponent, ReorderCategoriesPayload */
+
+  /***/
+  function srcAppComponentsProductProductListReorderCategoriesComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ReorderCategoriesComponent", function () {
+      return ReorderCategoriesComponent;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "ReorderCategoriesPayload", function () {
+      return ReorderCategoriesPayload;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/material/dialog */
+    "./node_modules/@angular/material/fesm2015/dialog.js");
+    /* harmony import */
+
+
+    var _angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/cdk/drag-drop */
+    "./node_modules/@angular/cdk/fesm2015/drag-drop.js");
+
+    var ReorderCategoriesComponent = /*#__PURE__*/function () {
+      function ReorderCategoriesComponent(payload, dialogRef) {
+        _classCallCheck(this, ReorderCategoriesComponent);
+
+        this.payload = payload;
+        this.dialogRef = dialogRef;
+        this.categories = payload.data;
+      }
+
+      _createClass(ReorderCategoriesComponent, [{
+        key: "drop",
+        value: function drop(event) {
+          Object(_angular_cdk_drag_drop__WEBPACK_IMPORTED_MODULE_3__["moveItemInArray"])(this.categories, event.previousIndex, event.currentIndex);
+
+          for (var i = 0; i < this.categories.length; i++) {
+            this.categories[i].priority = i;
+          }
+        }
+      }, {
+        key: "onConfirmClick",
+        value: function onConfirmClick() {
+          this.dialogRef.close(true);
+        }
+      }]);
+
+      return ReorderCategoriesComponent;
+    }();
+
+    ReorderCategoriesComponent.ctorParameters = function () {
+      return [{
+        type: ReorderCategoriesPayload,
+        decorators: [{
+          type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"],
+          args: [_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]]
+        }]
+      }, {
+        type: _angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"]
+      }];
+    };
+
+    ReorderCategoriesComponent = Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"])([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-reorder-categories-dialog',
+      template: Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! raw-loader!./reorder-categories.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/components/product/product-list/reorder-categories.component.html"))["default"],
+      styles: [Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"])(__webpack_require__(
+      /*! ./reorder-categories.component.css */
+      "./src/app/components/product/product-list/reorder-categories.component.css"))["default"]]
+    }), Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__param"])(0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material_dialog__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]))], ReorderCategoriesComponent);
+
+    var ReorderCategoriesPayload = function ReorderCategoriesPayload(data) {
+      _classCallCheck(this, ReorderCategoriesPayload);
+
+      this.data = data;
+    };
+    /***/
+
   },
 
   /***/
@@ -2566,7 +2763,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           name: [],
           location: [],
           coverImage: [''],
-          logoImage: ['']
+          logoImage: [''],
+          workingHoursStart: [''],
+          workingHoursEnd: ['']
         });
       }
 
@@ -2575,6 +2774,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function ngOnInit() {
           this.restaurant.name = '';
           this.restaurant.location = '';
+          this.restaurant.workingHours = '';
         }
       }, {
         key: "onFileSelect",
@@ -2596,33 +2796,34 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "addRestaurant",
         value: function addRestaurant() {
-          var _this8 = this;
+          var _this9 = this;
 
           this.spinner = true;
           this.restaurant = {
             name: this.name.value,
-            location: this.location.value
+            location: this.location.value,
+            workingHours: this.workingHours
           };
           this.restaurantService.addRestaurant(this.restaurant).then(function (response) {
             var formData = new FormData();
             var currentRestaurantId = response.body.id;
             var promises = [];
-            formData.append('file', _this8.form.get('coverImage').value);
-            promises.push(_this8.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'coverImage'));
+            formData.append('file', _this9.form.get('coverImage').value);
+            promises.push(_this9.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'coverImage'));
             formData = new FormData();
-            formData.append('file', _this8.form.get('logoImage').value);
-            promises.push(_this8.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'logoImage'));
+            formData.append('file', _this9.form.get('logoImage').value);
+            promises.push(_this9.restaurantService.addImageToRestaurant(formData, currentRestaurantId, 'logoImage'));
             Promise.all(promises).then(function () {
-              _this8.spinner = false;
+              _this9.spinner = false;
 
-              _this8.toastrService.success('Успешно добавен ресторант');
+              _this9.toastrService.success('Успешно добавен ресторант');
 
-              _this8.router.navigateByUrl('/restaurants');
+              _this9.router.navigateByUrl('/restaurants');
             });
           })["catch"](function (err) {
-            _this8.spinner = false;
+            _this9.spinner = false;
 
-            _global_app_settings__WEBPACK_IMPORTED_MODULE_6__["AppSettings"].redirectAndRequireToLogin(err.status, _this8.toastrService, _this8.router);
+            _global_app_settings__WEBPACK_IMPORTED_MODULE_6__["AppSettings"].redirectAndRequireToLogin(err.status, _this9.toastrService, _this9.router);
           });
         }
       }, {
@@ -2636,16 +2837,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           return this.form.get('location');
         }
       }, {
+        key: "workingHours",
+        get: function get() {
+          return this.form.get('workingHoursStart').value + ' - ' + this.form.get('workingHoursEnd').value;
+        }
+      }, {
         key: "setEmptyValuesForFormGroup",
         value: function setEmptyValuesForFormGroup(formGroup) {
-          var _this9 = this;
+          var _this10 = this;
 
           Object.values(formGroup.controls).forEach(function (control) {
             control.setValue('');
             control.setErrors(undefined);
 
             if (control.controls) {
-              _this9.setEmptyValuesForFormGroup(control);
+              _this10.setEmptyValuesForFormGroup(control);
             }
           });
         }
@@ -2783,7 +2989,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           image: [],
           logoImage: [],
           coverImage: [],
-          active: []
+          active: [],
+          workingHoursStart: [''],
+          workingHoursEnd: ['']
         });
       }
 
@@ -2799,16 +3007,19 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     return this.fetchRestaurants();
 
                   case 2:
+                    console.log(this.restaurant.workingHours.split('-')[0]);
                     this.form = this.formBuilder.group({
                       name: this.restaurant.name,
                       location: this.restaurant.location,
                       image: this.restaurant.image,
                       logoImage: this.restaurant.logoImageUrl,
                       coverImage: this.restaurant.coverImageUrl,
-                      active: this.restaurant.active ? "active" : "inactive"
+                      active: this.restaurant.active ? "active" : "inactive",
+                      workingHoursStart: this.restaurant.workingHours.split(' - ')[0],
+                      workingHoursEnd: this.restaurant.workingHours.split(' - ')[1]
                     });
 
-                  case 3:
+                  case 4:
                   case "end":
                     return _context15.stop();
                 }
@@ -2820,7 +3031,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "editRestaurant",
         value: function editRestaurant(restaurantId) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee16() {
-            var _this10 = this;
+            var _this11 = this;
 
             return regeneratorRuntime.wrap(function _callee16$(_context16) {
               while (1) {
@@ -2830,37 +3041,38 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     this.restaurant.name = this.form.get('name').value;
                     this.restaurant.location = this.form.get('location').value;
                     this.restaurant.active = this.form.get("active").value === "active";
+                    this.restaurant.workingHours = this.form.get("workingHoursStart").value + ' - ' + this.form.get('workingHoursEnd').value;
                     this.restaurantService.patchUpdateRestaurant(restaurantId, this.restaurant).then(function (response) {
                       var promises = [];
 
-                      if (_this10.isSelectedNewCover) {
+                      if (_this11.isSelectedNewCover) {
                         var formData = new FormData();
-                        formData.append('file', _this10.form.get('coverImage').value);
-                        promises.push(_this10.restaurantService.addImageToRestaurant(formData, _this10.restaurant.id, 'coverImage'));
+                        formData.append('file', _this11.form.get('coverImage').value);
+                        promises.push(_this11.restaurantService.addImageToRestaurant(formData, _this11.restaurant.id, 'coverImage'));
                       }
 
-                      if (_this10.isSelectedNewLogo) {
+                      if (_this11.isSelectedNewLogo) {
                         var _formData = new FormData();
 
-                        _formData.append('file', _this10.form.get('logoImage').value);
+                        _formData.append('file', _this11.form.get('logoImage').value);
 
-                        promises.push(_this10.restaurantService.addImageToRestaurant(_formData, _this10.restaurant.id, 'logoImage'));
+                        promises.push(_this11.restaurantService.addImageToRestaurant(_formData, _this11.restaurant.id, 'logoImage'));
                       }
 
                       Promise.all(promises).then(function () {
-                        _this10.router.navigateByUrl('/restaurants');
+                        _this11.router.navigateByUrl('/restaurants');
 
-                        _this10.toastrService.success('Успешно редактирахте ресторанта');
+                        _this11.toastrService.success('Успешно редактирахте ресторанта');
 
-                        _this10.spinner = false;
+                        _this11.spinner = false;
                       });
                     })["catch"](function (err) {
-                      _this10.spinner = false;
+                      _this11.spinner = false;
 
-                      _global_app_settings__WEBPACK_IMPORTED_MODULE_6__["AppSettings"].redirectAndRequireToLogin(err.status, _this10.toastrService, _this10.router);
+                      _global_app_settings__WEBPACK_IMPORTED_MODULE_6__["AppSettings"].redirectAndRequireToLogin(err.status, _this11.toastrService, _this11.router);
                     });
 
-                  case 5:
+                  case 6:
                   case "end":
                     return _context16.stop();
                 }
@@ -3225,7 +3437,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         key: "deleteRestaurant",
         value: function deleteRestaurant(restaurant) {
           return Object(tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"])(this, void 0, void 0, /*#__PURE__*/regeneratorRuntime.mark(function _callee21() {
-            var _this11 = this;
+            var _this12 = this;
 
             var dialogRef;
             return regeneratorRuntime.wrap(function _callee21$(_context21) {
@@ -3243,13 +3455,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                     });
                     dialogRef.afterClosed().subscribe(function (confirmed) {
                       if (confirmed) {
-                        _this11.restaurantService.deleteRestaurant(restaurant.id).then(function (response) {
+                        _this12.restaurantService.deleteRestaurant(restaurant.id).then(function (response) {
                           if (response.status === 200) {
-                            _this11.toastrService.success('Успешно изтрихте ресторанта!');
+                            _this12.toastrService.success('Успешно изтрихте ресторанта!');
 
-                            _this11.fetchRestaurants({
-                              pageIndex: _this11.page,
-                              pageSize: _this11.size
+                            _this12.fetchRestaurants({
+                              pageIndex: _this12.page,
+                              pageSize: _this12.size
                             });
                           }
                         });
@@ -3467,7 +3679,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "addUser",
         value: function addUser() {
-          var _this12 = this;
+          var _this13 = this;
 
           var user = {
             username: this.form.get('username').value,
@@ -3476,12 +3688,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           };
           this.userService.addUser(user, this.form.get('roles').value).then(function (res) {
             if (res.status === 200) {
-              _this12.toastrService.success('Успешно създадохте потребителя');
+              _this13.toastrService.success('Успешно създадохте потребителя');
 
-              _this12.setEmptyValuesForFormGroup(_this12.form);
+              _this13.setEmptyValuesForFormGroup(_this13.form);
             }
           })["catch"](function (err) {
-            _global_app_settings__WEBPACK_IMPORTED_MODULE_7__["AppSettings"].redirectAndRequireToLogin(err.status, _this12.toastrService, _this12.router);
+            _global_app_settings__WEBPACK_IMPORTED_MODULE_7__["AppSettings"].redirectAndRequireToLogin(err.status, _this13.toastrService, _this13.router);
           });
         }
       }, {
@@ -3492,14 +3704,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "setEmptyValuesForFormGroup",
         value: function setEmptyValuesForFormGroup(formGroup) {
-          var _this13 = this;
+          var _this14 = this;
 
           Object.values(formGroup.controls).forEach(function (control) {
             control.setValue('');
             control.setErrors(undefined);
 
             if (control.controls) {
-              _this13.setEmptyValuesForFormGroup(control);
+              _this14.setEmptyValuesForFormGroup(control);
             }
           });
         }
@@ -3713,7 +3925,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "deleteUser",
         value: function deleteUser(user) {
-          var _this14 = this;
+          var _this15 = this;
 
           var dialogRef = this.dialog.open(_restaurant_list_restaurants_confirmation_dialog_component__WEBPACK_IMPORTED_MODULE_7__["ConfirmationDialogComponent"], {
             data: {
@@ -3730,14 +3942,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               a.click();
               a.remove();
 
-              _this14.userService.deleteUser(user.id).then(function (res) {
+              _this15.userService.deleteUser(user.id).then(function (res) {
                 if (res.status === 200) {
-                  _this14.fetchAllUsers();
+                  _this15.fetchAllUsers();
 
-                  _this14.toastrService.success('Успешно изтрихте потребителя');
+                  _this15.toastrService.success('Успешно изтрихте потребителя');
                 }
               })["catch"](function (err) {
-                _global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].redirectAndRequireToLogin(err.status, _this14.toastrService, _this14.router);
+                _global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].redirectAndRequireToLogin(err.status, _this15.toastrService, _this15.router);
               });
             }
           });
@@ -3838,7 +4050,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       return AppSettings;
     }();
 
-    AppSettings.API_ENDPOINT = 'https://meniuto-portal-dev.azurewebsites.net'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
+    AppSettings.API_ENDPOINT = 'http://localhost:8080'; // 'https://tequila-s-laimche-brat.herokuapp.com  / 8080
 
     /***/
   },
@@ -4735,6 +4947,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function addCategory(restaurantId, category) {
           // tslint:disable-next-line:max-line-length
           return this.httpClient.post("".concat(_global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].API_ENDPOINT, "/api/category/create?restaurantId=").concat(restaurantId), category).toPromise();
+        }
+      }, {
+        key: "updateCategories",
+        value: function updateCategories(restaurantId, categories) {
+          return this.httpClient.put("".concat(_global_app_settings__WEBPACK_IMPORTED_MODULE_3__["AppSettings"].API_ENDPOINT, "/api/category?restaurantId=").concat(restaurantId), categories).toPromise();
         }
       }]);
 

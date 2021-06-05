@@ -27,6 +27,8 @@ import {CreateUserComponent} from './components/user/create-user/create-user.com
 import { MyProfileComponent } from './components/account/my-profile/my-profile.component';
 import {CreateNewCategoryDialogComponent} from './components/product/create-product/create-new-category.dialog';
 import {EditProductComponent} from "./components/product/edit-product/edit-product.component";
+import {ReorderCategoriesComponent} from "./components/product/product-list/reorder-categories.component";
+import {DragDropModule} from "@angular/cdk/drag-drop";
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import {EditProductComponent} from "./components/product/edit-product/edit-produ
     CreateNewCategoryDialogComponent,
     CreateUserComponent,
     MyProfileComponent,
-    ImportProductsComponent
+    ImportProductsComponent,
+    ReorderCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -58,14 +61,15 @@ import {EditProductComponent} from "./components/product/edit-product/edit-produ
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    DragDropModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
   }],
-  entryComponents: [CreateNewCategoryDialogComponent, ConfirmationDialogComponent],
+  entryComponents: [CreateNewCategoryDialogComponent, ConfirmationDialogComponent, ReorderCategoriesComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

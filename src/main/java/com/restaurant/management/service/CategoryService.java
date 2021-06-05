@@ -1,10 +1,13 @@
 package com.restaurant.management.service;
 
+import com.google.common.collect.Lists;
 import com.restaurant.management.model.Category;
 import com.restaurant.management.model.Restaurant;
 import com.restaurant.management.repository.CategoryRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -35,6 +38,7 @@ public class CategoryService extends DefaultCrudService<Category> {
         Restaurant foundRestaurant = this.restaurantService.findById(restaurantId)
                 .orElseThrow();
 
+        foundRestaurant.getCategories().sort(Comparator.comparingInt(Category::getPriority));
         return foundRestaurant.getCategories();
     }
 

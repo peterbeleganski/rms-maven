@@ -9,6 +9,8 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -48,4 +50,11 @@ public class Restaurant extends BaseObject {
     private List<Category> categories = new ArrayList<>();
 
     private boolean active;
+
+    private String workingHours;
+
+    public List<Category> getCategories() {
+        categories.sort(Comparator.comparingInt(Category::getPriority));
+        return categories;
+    }
 }
